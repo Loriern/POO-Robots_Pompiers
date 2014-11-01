@@ -25,62 +25,58 @@ class Carte {
 	}
 
 	public boolean voisinExiste(Case src, Direction dir){
-		switch (dir) {
-			case NORD :
-					if (src.getLigne()-1 >= 0){
-						return true;
-					}
-					else {
-						return false;
-					}
-					break;
-			case SUD :
-					if (src.getLigne()+1 < n){	// A mieux implémenter
-						return true;
-					}
-					else {
-						return false;
-					}
-					break;
-			case EST :
-					if (src.getColonne()+1 >= m){	// A mieux implémenter
-						return true;
-					}
-					else {
-						return false;
-					}
-					break;
-			case OUEST :
-					if (src.getColonne()-1 >= 0){
-						return true;
-					}
-					else {
-						return false;
-					}
-					break;
+		if(Direction.NORD.equals(dir)) {
+			if ((src.getLigne() - 1 >= 0) && (src.getLigne() - 1) < getNbLignes()){
+				return true;
+			}
+			else {
+				return false;
+			}
 		}
+		else if (Direction.SUD.equals(dir)) {
+			if ((src.getLigne() + 1 < getNbLignes()) && (src.getLigne() + 1) >= 0 ){	// A mieux implémenter
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		else if (Direction.EST.equals(dir)) {
+			if ((src.getColonne() + 1 < getNbColonnes()) && (src.getColonne() + 1 >= 0)){	// A mieux implémenter
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		else if (Direction.OUEST.equals(dir)) {
+			if ((src.getColonne() - 1 < getNbColonnes()) && (src.getColonne() - 1 >= 0)){
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		else
+			return false;
 	}
 
+
 	public Case getVoisin(Case src, Direction dir){
-		if (this.voisinExiste()) {
-		switch (dir) {
-			case NORD :
-					return this.grille[src.getLigne()-1][src.getColonne()];
-					break;
-			case SUD :
-					return this.grille[src.getLigne()+1][src.getColonne()];
-					break;
-			case EST :
-					return this.grille[src.getLigne()][src.getColonne()+1];
-					break;
-			case OUEST :
-					return this.grille[src.getLigne()][src.getColonne()-1];
-					break;
-		}
+		if (this.voisinExiste(src, dir)) {
+			if(Direction.NORD.equals(dir))
+				return this.grille[src.getLigne()-1][src.getColonne()];
+			else if(Direction.SUD.equals(dir))
+				return this.grille[src.getLigne()+1][src.getColonne()];
+			else if(Direction.EST.equals(dir))
+				return this.grille[src.getLigne()][src.getColonne()+1];
+			else if(Direction.OUEST.equals(dir))
+				return this.grille[src.getLigne()][src.getColonne()-1];
+			else 
+				return src;
 		}
 		else {
-			System.out.println("La case (" + src.getLigne() + "," + src.getColonne()
-								+ ") ne possède pas de voisin dans la direction " + dir + " !");
+			System.out.println("La case (" + src.getLigne() + ";" + src.getColonne() + ") ne possède pas de voisin dans la direction " + dir + " !");
 			return src;
 		}
 	}
