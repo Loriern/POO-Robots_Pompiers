@@ -1,19 +1,19 @@
 class Carte {
 	// Tel qu'implémenté : n sont les lignes, m les colonnes
-	private Case grille[n][m];
+	private Case[][] grille;
 	private int tailleCases;
 	//private int altitude;
 
-	public Evenements(long date){
+	public void Evenements(long date){
 
 	}
 
 	public int getNbLignes(){	// A mieux implémenter
-		return n;
+		return grille.length;
 	}
 
 	public int getNbColonnes(){	// A mieux implémenter
-		return m;
+		return grille[0].length;
 	}
 
 	public int TailleCases(){
@@ -82,5 +82,6 @@ class Carte {
 			System.out.println("La case (" + src.getLigne() + "," + src.getColonne()
 								+ ") ne possède pas de voisin dans la direction " + dir + " !");
 			return src;
+		}
 	}
 }
