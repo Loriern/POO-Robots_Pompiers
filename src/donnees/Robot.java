@@ -14,11 +14,11 @@ abstract public class Robot{
 	public void setPosition(Case xy){
 		this.position = xy;
 	}
-	
+
 	public int getCapacite(){
 		return this.capacite;
 	}
-	
+
 	public Robot(Case depart){
 		position = depart;
 	}
@@ -36,10 +36,10 @@ abstract public class Robot{
 	        deplacement(arrivee);
 	    }
 	}
-    
+
     protected void deplacement(Case arrivee);
     */
-    
+
 	public void deverserEau(int vol){
 		if (capacite >= vol)
 		    this.capacite -= vol;

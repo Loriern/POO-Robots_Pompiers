@@ -1,19 +1,29 @@
 package donnees;
 class Carte {
-	// Tel qu'implémenté : n sont les lignes, m les colonnes
 	private Case[][] grille;
 	private int tailleCases;
 	//private int altitude;
+
+	// Constructeur
+	public Carte(int nbLignes, int nbColonnes, int tailleCase){
+		this.grille = new Case[nbLignes][nbColonnes];
+			for (int i = 0; i < this.grille.length; i++) {
+				for (int j = 0; j < this.grille[i].length; j++) {
+					this.grille[i][j] = new Case(i, j, TERRAIN_LIBRE);	// Default
+				}
+			}
+		this.tailleCases = tailleCase;
+	}
 
 	public void Evenements(long date){
 
 	}
 
-	public int getNbLignes(){	// A mieux implémenter
+	public int getNbLignes(){
 		return grille.length;
 	}
 
-	public int getNbColonnes(){	// A mieux implémenter
+	public int getNbColonnes(){
 		return grille[0].length;
 	}
 
@@ -35,7 +45,7 @@ class Carte {
 			}
 		}
 		else if (Direction.SUD.equals(dir)) {
-			if ((src.getLigne() + 1 < getNbLignes()) && (src.getLigne() + 1) >= 0 ){	// A mieux implémenter
+			if ((src.getLigne() + 1 < getNbLignes()) && (src.getLigne() + 1) >= 0 ){
 				return true;
 			}
 			else {
@@ -43,7 +53,7 @@ class Carte {
 			}
 		}
 		else if (Direction.EST.equals(dir)) {
-			if ((src.getColonne() + 1 < getNbColonnes()) && (src.getColonne() + 1 >= 0)){	// A mieux implémenter
+			if ((src.getColonne() + 1 < getNbColonnes()) && (src.getColonne() + 1 >= 0)){
 				return true;
 			}
 			else {
@@ -73,7 +83,7 @@ class Carte {
 				return this.grille[src.getLigne()][src.getColonne()+1];
 			else if(Direction.OUEST.equals(dir))
 				return this.grille[src.getLigne()][src.getColonne()-1];
-			else 
+			else
 				return src;
 		}
 		else {
