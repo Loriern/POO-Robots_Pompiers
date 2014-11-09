@@ -20,7 +20,7 @@
 #   -classpath : repertoire dans lequel sont cherches les .class deja compiles
 #   -sourcepath : repertoire dans lequel sont cherches les .java (dependances)
 
-all: testIHM testLecture
+all: testIHM testLecture donnees
 
 testIHM:
 	javac -d bin -classpath bin/ihm.jar -sourcepath src src/TestIHM.java
@@ -28,6 +28,9 @@ testIHM:
 testLecture:
 	javac -d bin -sourcepath src src/TestLecteurDonnees.java
 	
+donnees:
+	javac -d bin -sourcepath src/donnees/*.java -sourcepath src/donnees/robot/*.java
+
 # Execution:
 # on peut taper directement la ligne de commande :
 #   > java -classpath bin TestIHM
