@@ -1,10 +1,14 @@
 package donnees;
-class Carte {
+public class Carte{
 	// Tel qu'implémenté : n sont les lignes, m les colonnes
 	private Case[][] grille;
 	private int tailleCases;
 	//private int altitude;
 
+    public Carte(int nbLignes, int nbColonnes, int tailleCases){
+        grille = new Case[nbLignes][nbColonnes];
+        this.tailleCases = tailleCases;
+    }
 	public void Evenements(long date){
 
 	}

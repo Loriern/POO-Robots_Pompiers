@@ -2,6 +2,7 @@
 
 import java.io.*;
 import java.util.*;
+import donnees.*;
 
 
 
@@ -51,6 +52,7 @@ public class LecteurDonnees {
 	// Tout le reste de la classe est prive!
 	
 	private static Scanner scanner;
+    private DonneesSimulation donneesSim;
 
 	/**
 	 * Constructeur prive; impossible d'instancier la classe depuis l'exterieur
@@ -71,7 +73,8 @@ public class LecteurDonnees {
 		try {
 			int nbLignes = scanner.nextInt();
 			int nbColonnes = scanner.nextInt();
-			int tailleCases = scanner.nextInt();	// en m
+			int tailleCases = scanner.nextInt();	
+            donneesSim = new DonneesSimulation(nbLignes, nbColonnes, tailleCases);
 			System.out.println("Carte " + nbLignes + "x" + nbColonnes
 					+ "; taille des cases = " + tailleCases);
 			
