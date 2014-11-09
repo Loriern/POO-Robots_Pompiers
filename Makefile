@@ -29,7 +29,7 @@ testLecture:
 	javac -d bin -sourcepath src src/TestLecteurDonnees.java
 	
 donnees:
-	javac -d bin -sourcepath src/donnees/*.java -sourcepath src/donnees/robot/*.java
+	javac -d bin -classpath bin -sourcepath src/donnees/*.java -sourcepath src/donnees/robot/*.java
 
 # Execution:
 # on peut taper directement la ligne de commande :
