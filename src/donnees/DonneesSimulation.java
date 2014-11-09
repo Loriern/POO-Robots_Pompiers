@@ -11,4 +11,12 @@ public class DonneesSimulation{
 
         this.carte = new Carte(nbLignes, nbColonnes, tailleCases);
     }
+    
+    public void initListInc(){
+        listeIncendies = new LinkedList<Incendie>();
+    }
+
+    public Carte getCarte(){
+        return carte;
+    }
 }

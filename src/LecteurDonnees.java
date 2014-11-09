@@ -129,7 +129,7 @@ public class LecteurDonnees {
 		ignorerCommentaires();
 		try {
 			int nbIncendies = scanner.nextInt();
-            donneesSim.listeIncendies = new LinkedList<Incendie>();
+            donneesSim.initListInc();
 			System.out.println("Nb d'incendies = " + nbIncendies);
 			for (int i = 0; i < nbIncendies; i++) {
 				lireIncendie(i);
