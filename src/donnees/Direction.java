@@ -1,7 +1,7 @@
 package donnees;
 public enum Direction {
-  NORD,
-  SUD,
-  EST,
-  OUEST;
+	NORD,
+	SUD,
+	EST,
+	OUEST;
 }

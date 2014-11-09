@@ -4,6 +4,12 @@ public class Case {
 	private int colonne;
 	private NatureTerrain nature;
 
+	public Case(int numLigne, int numColonne, NatureTerrain natureCase){
+		this.ligne = numLigne;
+		this.colonne = numColonne;
+		this.nature = natureCase;
+	}
+
 	public int getLigne(){
 		return this.ligne;
 	}
