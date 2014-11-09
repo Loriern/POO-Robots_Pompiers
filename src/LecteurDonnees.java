@@ -101,14 +101,14 @@ public class LecteurDonnees {
 		ignorerCommentaires();		
 		System.out.print("Case (" + lig + "," + col + "): ");
 		String chaineNature = new String();
-//		NatureTerrain nature;
+		//NatureTerrain nature;
 		
 		try {
 			chaineNature = scanner.next();
 			// si NatureTerrain est un Enum, vous pouvez recuperer la valeur
 			// de l'enum a partir d'une String avec: 
-//			NatureTerrain nature = NatureTerrain.valueOf(chaineNature);
-
+			//NatureTerrain nature = NatureTerrain.valueOf(chaineNature);
+            donneesSim.getCarte().initCase(lig, col, NatureTerrain.valueOf(chaineNature));
 			verifieLigneTerminee();
 			
 			System.out.print("nature = " + chaineNature);
@@ -129,6 +129,7 @@ public class LecteurDonnees {
 		ignorerCommentaires();
 		try {
 			int nbIncendies = scanner.nextInt();
+            donneesSim.listeIncendies = new LinkedList<Incendie>();
 			System.out.println("Nb d'incendies = " + nbIncendies);
 			for (int i = 0; i < nbIncendies; i++) {
 				lireIncendie(i);

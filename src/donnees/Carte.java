@@ -1,6 +1,6 @@
 package donnees;
 
-class Carte {
+public class Carte{
 	private Case[][] grille;
 	private int tailleCases;
 	//private int altitude;
@@ -19,6 +19,11 @@ class Carte {
 	public void Evenements(long date){
 
 	}
+
+    public void initCase(int lig, int col, NatureTerrain natureCase)
+    {
+        grille[lig][col] = new Case (lig, col, natureCase);
+    }
 
 	public int getNbLignes(){
 		return grille.length;
