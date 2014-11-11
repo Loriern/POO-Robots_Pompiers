@@ -20,14 +20,17 @@
 #   -classpath : repertoire dans lequel sont cherches les .class deja compiles
 #   -sourcepath : repertoire dans lequel sont cherches les .java (dependances)
 
-all: testIHM testLecture donnees
+all: testIHM testSimulateur testLecture donnees
 
 testIHM:
 	javac -d bin -classpath bin/ihm.jar -sourcepath src src/TestIHM.java
 
+testSimulateur:
+	javac -d bin -classpath bin/ihm.jar -sourcepath src src/Simulateur.java
+
 testLecture:
 	javac -d bin -sourcepath src src/TestLecteurDonnees.java
-	
+
 donnees:
 	javac -d bin -classpath bin -sourcepath src/donnees/*.java -sourcepath src/donnees/robot/*.java
 
@@ -38,6 +41,9 @@ donnees:
 #   > make exeIHM
 exeIHM:
 	java -classpath bin:bin/ihm.jar TestIHM
+
+exeSimulateur:
+	java -classpath bin:bin/ihm.jar Simulateur
 
 exeLecture:
 	java -classpath bin TestLecteurDonnees cartes/carteSujet.txt
