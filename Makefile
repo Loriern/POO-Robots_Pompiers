@@ -46,13 +46,13 @@ exeSimulateur:
 	java -classpath bin:bin/ihm.jar Simulateur cartes/carteSujet.txt
 
 exeSimulateurDesert:
-	java -classpath bin:bin/ihm.jar Simulateur cartes/carteSujet.txt
+	java -classpath bin:bin/ihm.jar Simulateur cartes/desertOfDeath-20x20.map
 
 exeSimulateurMushroom:
-	java -classpath bin:bin/ihm.jar Simulateur cartes/carteSujet.txt
+	java -classpath bin:bin/ihm.jar Simulateur cartes/mushroomOfHell-20x20.map
 
 exeSimulateurSpiral:
-	java -classpath bin:bin/ihm.jar Simulateur cartes/carteSujet.txt
+	java -classpath bin:bin/ihm.jar Simulateur cartes/spiralOfMadness-50x50.map
 
 exeLecture:
 	java -classpath bin TestLecteurDonnees cartes/carteSujet.txt
