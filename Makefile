@@ -43,7 +43,16 @@ exeIHM:
 	java -classpath bin:bin/ihm.jar TestIHM
 
 exeSimulateur:
-	java -classpath bin:bin/ihm.jar Simulateur
+	java -classpath bin:bin/ihm.jar Simulateur cartes/carteSujet.txt
+
+exeSimulateurDesert:
+	java -classpath bin:bin/ihm.jar Simulateur cartes/carteSujet.txt
+
+exeSimulateurMushroom:
+	java -classpath bin:bin/ihm.jar Simulateur cartes/carteSujet.txt
+
+exeSimulateurSpiral:
+	java -classpath bin:bin/ihm.jar Simulateur cartes/carteSujet.txt
 
 exeLecture:
 	java -classpath bin TestLecteurDonnees cartes/carteSujet.txt

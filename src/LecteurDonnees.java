@@ -47,12 +47,17 @@ public class LecteurDonnees {
 	}
 
 
+	public static DonneesSimulation initData(String fichierDonnees)
+			throws FileNotFoundException, ExceptionFormatDonnees {
+				lire(fichierDonnees);
+				return donneesSim;
+	}
 
 
 	// Tout le reste de la classe est prive!
 
 	private static Scanner scanner;
-    private DonneesSimulation donneesSim;
+    private static DonneesSimulation donneesSim;
 
 	/**
 	 * Constructeur prive; impossible d'instancier la classe depuis l'exterieur

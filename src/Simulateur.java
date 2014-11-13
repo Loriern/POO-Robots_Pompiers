@@ -2,36 +2,37 @@ import ihm.*;
 import java.io.*;
 import java.util.*;
 import donnees.*;
+import java.awt.Color;
 
 public class Simulateur {
 	public static void main(String[] args) {
-		Simulation simulation = new Simulation();
+		if (args.length < 1) {
+			System.out.println("Syntaxe: java TestLecteurDonnees <nomDeFichier>");
+			System.exit(1);
+		}
+
+		try {
+		Simulation simulation = new Simulation(args[0]);
+		} catch (FileNotFoundException e) {
+			System.out.println("fichier " + args[0] + " inconnu ou illisible");
+		} catch (ExceptionFormatDonnees e) {
+			System.out.println("\n\t**format du fichier " + args[0] + " invalide: " + e.getMessage());
+		}
 	}
 }
 
 class Simulation implements Simulable {
 // 	private Carte carte;
 		// Ou plutôt DonneesSimulation ?
-    private DonneesSimulation donneesSim;
+    private DonneesSimulation simData;
 	private IGSimulateur ihm;
     private long date = 0;
 
-	public Simulation() {
-		try {
-		// cree l'IHM et l'associe a ce simulateur (this), qui en tant que
-		// Simulable recevra les evenements suite aux actions de l'utilisateur
-		// LecteurDonnees.lire(fichierDonnees);
-		LecteurDonnees.lire("cartes/carteSujet.txt");
-// 		donneesSim = new DonneesSimulation(this);
-// 		ihm = new IGSimulateur(nbColonnes, nbLignes, this);
-		ihm = new IGSimulateur(donneesSim.getCarte().getNbColonnes(), donneesSim.getCarte().getNbLignes(), this);
+	public Simulation(String fileName)
+			throws FileNotFoundException, ExceptionFormatDonnees {
+		simData = LecteurDonnees.initData(fileName);
+		ihm = new IGSimulateur(simData.getCarte().getNbColonnes(), simData.getCarte().getNbLignes(), this);
 		dessine();    // mettre a jour l'affichage
-		} catch (FileNotFoundException e) {
-			System.out.println("Ce fichier n'existe pas.");
-		} catch (ExceptionFormatDonnees ef){
-			System.out.println("Format erroné.");
-		}
-
 	}
 
 	@Override
@@ -51,20 +52,21 @@ class Simulation implements Simulable {
 
 	private void dessine() {
         // Afficher les donnees
-// 		try {
-			for (int i = 0; i < donneesSim.getCarte().getNbLignes(); i++) {
-				for (int j = 0; j < donneesSim.getCarte().getNbColonnes(); j++) {
+		try {
+			for (int i = 0; i < simData.getCarte().getNbLignes(); i++) {
+				for (int j = 0; j < simData.getCarte().getNbColonnes(); j++) {
+					ihm.paintBox(i, j, Color.GREEN);
 					dessineCase(i,j);
 				}
 			}
 			// + Draw Fires
-// 		} catch (MapIndexOutOfBoundsException e) {
-// 			e.printStackTrace();
-// 		}
+		} catch (MapIndexOutOfBoundsException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private void dessineCase(int i, int j) {
-		NatureTerrain natureCase = donneesSim.getCarte().getCase(i, j).getNature();
+		NatureTerrain natureCase = simData.getCarte().getCase(i, j).getNature();
 		String image = new String("");;
 		switch (natureCase) {
 			case EAU:
@@ -80,7 +82,7 @@ class Simulation implements Simulable {
 					image += "images/roche.png";
 					break;
 			case TERRAIN_LIBRE:
-					image += "images/terrain_libre.png";
+// 					image += "images/terrain_libre.png";
 					break;
 		}	// Launch exception with default case ?
 
