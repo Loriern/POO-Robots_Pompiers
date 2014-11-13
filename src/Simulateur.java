@@ -55,8 +55,8 @@ class Simulation implements Simulable {
 		try {
 			for (int i = 0; i < simData.getCarte().getNbLignes(); i++) {
 				for (int j = 0; j < simData.getCarte().getNbColonnes(); j++) {
-					ihm.paintBox(i, j, Color.GREEN);
-					dessineCase(i,j);
+					ihm.paintBox(j, i, Color.GREEN);
+					dessineCase(j,i);
 				}
 			}
 			// + Draw Fires
@@ -65,7 +65,7 @@ class Simulation implements Simulable {
 		}
 	}
 
-	private void dessineCase(int i, int j) {
+	private void dessineCase(int j, int i) {
 		NatureTerrain natureCase = simData.getCarte().getCase(i, j).getNature();
 		String image = new String("");;
 		switch (natureCase) {
@@ -87,7 +87,7 @@ class Simulation implements Simulable {
 		}	// Launch exception with default case ?
 
 		try {
-			ihm.paintImage(i, j, image, 1, 1);
+			ihm.paintImage(j, i, image, 1, 1);
 		} catch (MapIndexOutOfBoundsException e) {
 			e.printStackTrace();
 		}
