@@ -8,7 +8,6 @@ public class DonneesSimulation{
     private Robot[] pompiers;
 
     public DonneesSimulation(int nbLignes, int nbColonnes, int tailleCases){
-
         this.carte = new Carte(nbLignes, nbColonnes, tailleCases);
     }
 
@@ -16,7 +15,15 @@ public class DonneesSimulation{
         listeIncendies = new LinkedList<Incendie>();
     }
 
+	public void ajouteIncendie(Incendie incendie) {
+		listeIncendies.add(incendie);
+	}
+
     public Carte getCarte(){
         return carte;
     }
+
+	public LinkedList<Incendie> getIncendies() {
+		return this.listeIncendies;
+	}
 }

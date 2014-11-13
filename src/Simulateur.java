@@ -60,12 +60,15 @@ class Simulation implements Simulable {
 				}
 			}
 			// + Draw Fires
+			dessineIncendies(simData.getIncendies());
+// 			dessineRobots(simData.getRobots());
 		} catch (MapIndexOutOfBoundsException e) {
 			e.printStackTrace();
 		}
 	}
 
-	private void dessineCase(int j, int i) {
+	private void dessineCase(int j, int i)
+			throws MapIndexOutOfBoundsException {
 		NatureTerrain natureCase = simData.getCarte().getCase(i, j).getNature();
 		String image = new String("");;
 		switch (natureCase) {
@@ -86,11 +89,36 @@ class Simulation implements Simulable {
 					break;
 		}	// Launch exception with default case ?
 
-		try {
+// 		try {
 			ihm.paintImage(j, i, image, 1, 1);
-		} catch (MapIndexOutOfBoundsException e) {
-			e.printStackTrace();
+// 		} catch (MapIndexOutOfBoundsException e) {
+// 			e.printStackTrace();
+// 		}
+	}
+
+	private void dessineIncendies(LinkedList<Incendie> incendies)
+			throws MapIndexOutOfBoundsException {
+		for(Incendie i : incendies) {
+			if (i.getIntensite()<5000) {
+				ihm.paintImage((i.getPosition()).getColonne(), (i.getPosition()).getLigne(), "images/feu.png", 0.5, 0.5);
+			}
+			else if (i.getIntensite()<10000) {
+				ihm.paintImage((i.getPosition()).getColonne(), (i.getPosition()).getLigne(), "images/feu.png", 0.7, 0.7);
+			}
+			else if (i.getIntensite()<15000) {
+				ihm.paintImage((i.getPosition()).getColonne(), (i.getPosition()).getLigne(), "images/feu.png", 0.9, 0.9);
+			}
+			else {
+				ihm.paintImage((i.getPosition()).getColonne(), (i.getPosition()).getLigne(), "images/feu.png", 1, 1);
+			}
 		}
 	}
+
+// 	private void dessineRobots(Robot[] pompiers)
+// 			throws MapIndexOutOfBoundsException {
+// 		for(int i = 0; i < pompiers.length; i++) {
+//
+// 		}
+// 	}
 }
 
