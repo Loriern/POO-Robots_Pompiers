@@ -23,6 +23,11 @@ public class Drone extends Robot{
 		capacite = 10000;
 		vitesse = 100;
 	}
+
+	public RobotType getType(){
+		return RobotType.DRONE;
+	}
+
 	public double getVitesse(NatureTerrain natureDuTerrain){
 		return vitesse;
 	}

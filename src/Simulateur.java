@@ -1,8 +1,10 @@
-import ihm.*;
 import java.io.*;
 import java.util.*;
-import donnees.*;
 import java.awt.Color;
+
+import ihm.*;
+
+import donnees.*;
 
 public class Simulateur {
 	public static void main(String[] args) {
@@ -55,13 +57,13 @@ class Simulation implements Simulable {
 		try {
 			for (int i = 0; i < simData.getCarte().getNbLignes(); i++) {
 				for (int j = 0; j < simData.getCarte().getNbColonnes(); j++) {
-					ihm.paintBox(j, i, Color.GREEN);
+					ihm.paintBox(j, i, Color.GREEN);	// Attention, vicieux : la méthode demande la colonne d'abord
 					dessineCase(j,i);
 				}
 			}
 			// + Draw Fires
 			dessineIncendies(simData.getIncendies());
-// 			dessineRobots(simData.getRobots());
+			dessineRobots(simData.getRobots());
 		} catch (MapIndexOutOfBoundsException e) {
 			e.printStackTrace();
 		}
@@ -114,11 +116,25 @@ class Simulation implements Simulable {
 		}
 	}
 
-// 	private void dessineRobots(Robot[] pompiers)
-// 			throws MapIndexOutOfBoundsException {
-// 		for(int i = 0; i < pompiers.length; i++) {
-//
-// 		}
-// 	}
+	private void dessineRobots(Robot[] pompiers)
+			throws MapIndexOutOfBoundsException {
+		for(int i = 0; i < pompiers.length; i++) {
+			switch (pompiers[i].getType()) {
+				case DRONE:
+						ihm.paintImage((pompiers[i].getPosition()).getColonne(), (pompiers[i].getPosition()).getLigne(), "images/drone.png", 1, 1);
+						break;
+				case CHENILLES:
+						ihm.paintImage((pompiers[i].getPosition()).getColonne(), (pompiers[i].getPosition()).getLigne(), "images/chenilles.png", 1, 1);
+						break;
+				case PATTES:
+						ihm.paintImage((pompiers[i].getPosition()).getColonne(), (pompiers[i].getPosition()).getLigne(), "images/pattes.png", 1, 1);
+						break;
+				case ROUES:
+						ihm.paintImage((pompiers[i].getPosition()).getColonne(), (pompiers[i].getPosition()).getLigne(), "images/roues.png", 1, 1);
+						break;
+			}
+			pompiers[i].getPosition();
+		}
+	}
 }
 

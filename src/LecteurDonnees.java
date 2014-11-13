@@ -3,7 +3,7 @@
 import java.io.*;
 import java.util.*;
 import donnees.*;
-
+import donnees.robot.*;
 
 
 /**
@@ -186,6 +186,7 @@ public class LecteurDonnees {
 		try {
 			int nbRobots = scanner.nextInt();
 			System.out.println("Nb de robots = " + nbRobots);
+			donneesSim.initRobotTab(nbRobots);
 			for (int i = 0; i < nbRobots; i++) {
 				lireRobot(i);
 			}
@@ -226,6 +227,9 @@ public class LecteurDonnees {
 				System.out.print(vitesse);
 			}
 			verifieLigneTerminee();
+
+			RobotType robotType = RobotType.valueOf(type);
+			donneesSim.initRobot(i, donneesSim.getCarte().getCase(lig, col), robotType);
 
 			System.out.println();
 

@@ -16,10 +16,15 @@ public class RobotAPattes extends Robot{
 // Extinction
 //
 // Intervention unitaire : 10 litres en 1 sec.
+
     public RobotAPattes(Case depart){
 		super(depart);
 		capacite = Integer.MAX_VALUE;
 		vitesse = 30;
+	}
+
+	public RobotType getType(){
+		return RobotType.PATTES;
 	}
 
 	public double getVitesse(NatureTerrain natureDuTerrain){
