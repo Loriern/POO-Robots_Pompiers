@@ -3,35 +3,19 @@ import java.util.*;
 import java.awt.Color;
 
 import ihm.*;
-
 import donnees.*;
 
-public class Simulateur {
-	public static void main(String[] args) {
-		if (args.length < 1) {
-			System.out.println("Syntaxe: java TestLecteurDonnees <nomDeFichier>");
-			System.exit(1);
-		}
 
-		try {
-		Simulation simulation = new Simulation(args[0]);
-		} catch (FileNotFoundException e) {
-			System.out.println("fichier " + args[0] + " inconnu ou illisible");
-		} catch (ExceptionFormatDonnees e) {
-			System.out.println("\n\t**format du fichier " + args[0] + " invalide: " + e.getMessage());
-		}
-	}
-}
-
-class Simulation implements Simulable {
-// 	private Carte carte;
-		// Ou plutôt DonneesSimulation ?
+public class Simulateur implements Simulable {
     private DonneesSimulation simData;
 	private IGSimulateur ihm;
-    private long date = 0;
+    private long dateSimulation/* = 0*/;
+    private PriorityQueue<Evenement> events;
 
-	public Simulation(String fileName)
+	public Simulateur(String fileName)
 			throws FileNotFoundException, ExceptionFormatDonnees {
+		this.dateSimulation = 0;
+		this.events = new PriorityQueue<Evenement>();
 		simData = LecteurDonnees.initData(fileName);
 		ihm = new IGSimulateur(simData.getCarte().getNbColonnes(), simData.getCarte().getNbLignes(), this);
 		dessine();    // mettre a jour l'affichage
@@ -39,8 +23,8 @@ class Simulation implements Simulable {
 
 	@Override
 	public void next() {
-		date++;
-		System.out.println("TODO: avancer la simulation \"d'un pas de temps\": " + date);
+		incrementeDate();
+		System.out.println("TODO: avancer la simulation \"d'un pas de temps\": " + dateSimulation);
 		System.out.println("  => On voit ce que ça donne!");
 		dessine();    // mettre a jour l'affichage
 	}
@@ -48,7 +32,7 @@ class Simulation implements Simulable {
 	@Override
 	public void restart() {
 		System.out.println("TODO: remettre le simulateur dans son état initial");
-		date = 0;
+		dateSimulation = 0;
 		dessine();    // mettre a jour l'affichage
 	}
 
@@ -134,6 +118,26 @@ class Simulation implements Simulable {
 						break;
 			}
 			pompiers[i].getPosition();
+		}
+	}
+
+	public void ajouteEvenement(Evenement e){
+		this.events.add(e);
+	}
+
+	private void incrementeDate(){
+		this.dateSimulation++;
+		while (!simulationTerminee() && (this.events.peek().getDate() == this.dateSimulation)) {
+			this.events.poll().execute();
+		}
+	}
+
+	private boolean simulationTerminee(){
+		if (this.events.peek() != null) {
+			return false;
+		}
+		else {
+			return true;
 		}
 	}
 }

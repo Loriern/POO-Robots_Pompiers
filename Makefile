@@ -20,13 +20,13 @@
 #   -classpath : repertoire dans lequel sont cherches les .class deja compiles
 #   -sourcepath : repertoire dans lequel sont cherches les .java (dependances)
 
-all: testIHM testSimulateur testLecture donnees
+all: testIHM testSimulation testLecture donnees
 
 testIHM:
 	javac -d bin -classpath bin/ihm.jar -sourcepath src src/TestIHM.java
 
-testSimulateur:
-	javac -d bin -classpath bin/ihm.jar -sourcepath src src/Simulateur.java
+testSimulation:
+	javac -d bin -classpath bin/ihm.jar -sourcepath src src/Simulation.java
 
 testLecture:
 	javac -d bin -sourcepath src src/TestLecteurDonnees.java
@@ -42,17 +42,17 @@ donnees:
 exeIHM:
 	java -classpath bin:bin/ihm.jar TestIHM
 
-exeSimulateur:
-	java -classpath bin:bin/ihm.jar Simulateur cartes/carteSujet.txt
+exeSimulation:
+	java -classpath bin:bin/ihm.jar Simulation cartes/carteSujet.txt
 
-exeSimulateurDesert:
-	java -classpath bin:bin/ihm.jar Simulateur cartes/desertOfDeath-20x20.map
+exeSimulationDesert:
+	java -classpath bin:bin/ihm.jar Simulation cartes/desertOfDeath-20x20.map
 
-exeSimulateurMushroom:
-	java -classpath bin:bin/ihm.jar Simulateur cartes/mushroomOfHell-20x20.map
+exeSimulationMushroom:
+	java -classpath bin:bin/ihm.jar Simulation cartes/mushroomOfHell-20x20.map
 
-exeSimulateurSpiral:
-	java -classpath bin:bin/ihm.jar Simulateur cartes/spiralOfMadness-50x50.map
+exeSimulationSpiral:
+	java -classpath bin:bin/ihm.jar Simulation cartes/spiralOfMadness-50x50.map
 
 exeLecture:
 	java -classpath bin TestLecteurDonnees cartes/carteSujet.txt
