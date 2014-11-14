@@ -54,8 +54,8 @@ public class DonneesSimulation{
         return this.pompiers;
     }
 
-	public Robot getRobot(int i){
-		return this.pompiers[i];
-	}
+// 	public Robot getRobot(int i){
+// 		return this.pompiers[i];
+// 	}
 
 }

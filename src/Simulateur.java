@@ -11,11 +11,13 @@ public class Simulateur implements Simulable {
 	private IGSimulateur ihm;
     private long dateSimulation/* = 0*/;
     private PriorityQueue<Evenement> events;
+    private Manager manager;
 
 	public Simulateur(String fileName)
 			throws FileNotFoundException, ExceptionFormatDonnees {
 		this.dateSimulation = 0;
 		this.events = new PriorityQueue<Evenement>();
+		this.manager = new ManagerScenario(this);
 		simData = LecteurDonnees.initData(fileName);
 		ihm = new IGSimulateur(simData.getCarte().getNbColonnes(), simData.getCarte().getNbLignes(), this);
 		dessine();    // mettre a jour l'affichage
@@ -140,5 +142,8 @@ public class Simulateur implements Simulable {
 			return true;
 		}
 	}
-}
 
+	public DonneesSimulation getDonneesSimulation(){
+		return this.simData;
+	}
+}
