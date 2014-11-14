@@ -19,10 +19,15 @@ public class RobotAChenilles extends Robot{
 // Extinction
 //
 // Intervention unitaire : 100 litres en 8 sec.
+
     public RobotAChenilles(Case depart){
 		super(depart);
 		capacite = 2000;
 		vitesse = 60;
+	}
+
+	public RobotType getType(){
+		return RobotType.CHENILLES;
 	}
 
 	public double getVitesse(NatureTerrain natureDuTerrain){

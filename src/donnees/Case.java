@@ -9,7 +9,7 @@ public class Case {
 		this.colonne = numColonne;
 		this.nature = natureCase;
 	}
-    
+
 	public int getLigne(){
 		return this.ligne;
 	}

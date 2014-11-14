@@ -20,9 +20,10 @@ abstract public class Robot{
 	}
 
 	public Robot(Case depart){
-		position = depart;
+		this.position = depart;
 	}
 
+	// public void setVitesse(int vitesse)
 
 //			Reminder : pour plus haut
 // Le temps nécessaire
@@ -39,6 +40,9 @@ abstract public class Robot{
 
     protected void deplacement(Case arrivee);
     */
+
+	public abstract RobotType getType();
+
 
 	public void deverserEau(int vol){
 		if (capacite >= vol)
