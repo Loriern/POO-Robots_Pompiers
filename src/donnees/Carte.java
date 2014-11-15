@@ -16,7 +16,7 @@ public class Carte{
 			}*/
 	}
 
-	public void Evenements(long date){
+	public void evenements(long date){
 
 	}
 
@@ -33,7 +33,7 @@ public class Carte{
 		return grille[0].length;
 	}
 
-	public int TailleCases(){
+	public int getTailleCases(){
 		return this.tailleCases;
 	}
 
