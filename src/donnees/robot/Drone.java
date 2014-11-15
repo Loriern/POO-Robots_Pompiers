@@ -45,7 +45,7 @@ public class Drone extends Robot/* implements Voler*/ {
 		}
 	}
 
-	public void deplacer(Carte carte, Direction dir){
-		super.setPosition(carte.getVoisin(this.position, dir));
+	public void deplacer(Case nouvellePosition){
+		super.setPosition(nouvellePosition);
 	}
 }

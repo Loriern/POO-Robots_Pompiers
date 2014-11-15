@@ -49,4 +49,8 @@ public class RobotAChenilles extends Robot{
 			super.capacite = 2000;
 		}
 	}
+
+	public void deplacer(Carte carte, Direction dir){
+		super.setPosition(carte.getVoisin(this.position, dir));
+	}
 }

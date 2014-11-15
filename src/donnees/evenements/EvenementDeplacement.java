@@ -17,9 +17,10 @@ public class EvenementDeplacement extends Evenement {
 	// On check que le déplaceent puisse se faire
 		Case voisin =  carte.getVoisin(robot.getPosition(), direction);
 		if (voisin != robot.getPosition()) {
-			this.robot.deplacer(carte, direction);
+			this.robot.deplacer(voisin);
 		}
 		else {
+			System.out.println("Le robot ne peut continuer à aller " + direction.toString() + "!");
 			return;
 		}
 	}

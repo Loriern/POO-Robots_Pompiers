@@ -41,7 +41,7 @@ abstract public class Robot{
     protected void deplacement(Case arrivee);
     */
 
-    public void deplacer(Carte c, Direction d){
+    public void deplacer(Case c){
 // 		super.setPosition(carte.getVoisin(this.position, dir));
     }
 
