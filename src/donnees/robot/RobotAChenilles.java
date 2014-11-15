@@ -22,8 +22,8 @@ public class RobotAChenilles extends Robot{
 
     public RobotAChenilles(Case depart){
 		super(depart);
-		capacite = 2000;
-		vitesse = 60;
+		this.capacite = 2000;
+		this.vitesse = 60;
 	}
 
 	public RobotType getType(){
@@ -43,6 +43,10 @@ public class RobotAChenilles extends Robot{
 	}
 
 
+	public int getCapaciteMax(){
+		return 2000;
+	}
+
 	public void remplirReservoir(){
 		super.capacite += 400;
 		if (super.capacite > 2000){
@@ -50,7 +54,7 @@ public class RobotAChenilles extends Robot{
 		}
 	}
 
-	public void deplacer(Carte carte, Direction dir){
-		super.setPosition(carte.getVoisin(this.position, dir));
-	}
+// 	public void deplacer(Carte carte, Direction dir){
+// 		super.setPosition(carte.getVoisin(this.position, dir));
+// 	}
 }

@@ -19,8 +19,8 @@ public class RobotAPattes extends Robot{
 
     public RobotAPattes(Case depart){
 		super(depart);
-		capacite = Integer.MAX_VALUE;
-		vitesse = 30;
+		this.capacite = Integer.MAX_VALUE;
+		this.vitesse = 30;
 	}
 
 	public RobotType getType(){
@@ -43,11 +43,16 @@ public class RobotAPattes extends Robot{
 		return;	// :)
 	}
 
+
+	public int getCapaciteMax(){
+		return Integer.MAX_VALUE;
+	}
+
 	public void remplirReservoir(){
 		return;	// :)
 	}
 
-	public void deplacer(Carte carte, Direction dir){
-		super.setPosition(carte.getVoisin(this.position, dir));
-	}
+// 	public void deplacer(Carte carte, Direction dir){
+// 		super.setPosition(carte.getVoisin(this.position, dir));
+// 	}
 }

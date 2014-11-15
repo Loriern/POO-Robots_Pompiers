@@ -25,6 +25,10 @@ public class DonneesSimulation{
 		return this.listeIncendies;
 	}
 
+	public Incendie getIncendie(int i) {
+		return this.listeIncendies.get(i);
+	}
+
     public Carte getCarte(){
         return this.carte;
     }

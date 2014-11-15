@@ -15,4 +15,8 @@ public class Incendie {
 	public Case getPosition(){
 		return this.position;
 	}
+
+	public void extinction(int eauJeteeSurLeFeu){
+		this.intensite -= eauJeteeSurLeFeu;
+	}
 }

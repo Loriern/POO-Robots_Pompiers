@@ -33,6 +33,10 @@ public class Drone extends Robot/* implements Voler*/ {
 	}
 
 
+	public int getCapaciteMax(){
+		return 10000;
+	}
+
 	public void remplirReservoir(){
 		if (position.getNature().equals(NatureTerrain.EAU)) {
 			capacite += 333;
@@ -45,7 +49,7 @@ public class Drone extends Robot/* implements Voler*/ {
 		}
 	}
 
-	public void deplacer(Case nouvellePosition){
-		super.setPosition(nouvellePosition);
-	}
+// 	public void deplacer(Case nouvellePosition){
+// 		super.setPosition(nouvellePosition);
+// 	}
 }
