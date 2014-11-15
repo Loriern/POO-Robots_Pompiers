@@ -20,8 +20,8 @@ public class RobotARoues extends Robot{
 
     public RobotARoues(Case depart){
 		super(depart);
-		capacite = 5000;
-		vitesse = 80;
+		this.capacite = 5000;
+		this.vitesse = 80;
 	}
 
 	public RobotType getType(){
@@ -38,6 +38,10 @@ public class RobotARoues extends Robot{
 	}
 
 
+	public int getCapaciteMax(){
+		return 5000;
+	}
+
 	public void remplirReservoir(){
 		super.capacite += 500;
 		if (super.capacite > 5000){
@@ -45,7 +49,7 @@ public class RobotARoues extends Robot{
 		}
 	}
 
-	public void deplacer(Carte carte, Direction dir){
-		super.setPosition(carte.getVoisin(this.position, dir));
-	}
+// 	public void deplacer(Carte carte, Direction dir){
+// 		super.setPosition(carte.getVoisin(this.position, dir));
+// 	}
 }

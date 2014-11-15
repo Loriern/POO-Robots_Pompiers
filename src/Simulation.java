@@ -12,12 +12,12 @@ public class Simulation {
 		try {
 			Simulateur simulation = new Simulateur(args[0]);
 
-			for (int i = 2; i <= 10; i += 2) {
-				simulation.ajouteEvenement(new EvenementMessage(i, " [PING]"));
-			}
-			for (int i = 3; i <= 9; i += 3) {
-				simulation.ajouteEvenement(new EvenementMessage(i, " [PONG]"));
-			}
+// 			for (int i = 2; i <= 10; i += 2) {
+// 				simulation.ajouteEvenement(new EvenementMessage(i, " [PING]"));
+// 			}
+// 			for (int i = 3; i <= 9; i += 3) {
+// 				simulation.ajouteEvenement(new EvenementMessage(i, " [PONG]"));
+// 			}
 
 		} catch (FileNotFoundException e) {
 			System.out.println("fichier " + args[0] + " inconnu ou illisible");

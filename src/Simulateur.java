@@ -12,10 +12,12 @@ public class Simulateur implements Simulable {
     private long dateSimulation/* = 0*/;
     private PriorityQueue<Evenement> events;
     private Manager manager;
+// 	private String nomDuFichier;
 
 	public Simulateur(String fileName)
 			throws FileNotFoundException, ExceptionFormatDonnees {
 		this.dateSimulation = 0;
+// 		this.nomDuFichier = filename;
 		this.events = new PriorityQueue<Evenement>();
 		this.manager = new ManagerScenario(this);
 		simData = LecteurDonnees.initData(fileName);
@@ -27,6 +29,7 @@ public class Simulateur implements Simulable {
 	@Override
 	public void next() {
 		incrementeDate();
+		System.out.println("" + dateSimulation);
 // 		System.out.println("TODO: avancer la simulation \"d'un pas de temps\": " + dateSimulation);
 // 		System.out.println("  => On voit ce que ça donne!");
 		dessine();    // mettre a jour l'affichage
@@ -35,6 +38,7 @@ public class Simulateur implements Simulable {
 	@Override
 	public void restart() {
 		System.out.println("TODO: remettre le simulateur dans son état initial");
+//	this.Simulateur(nomDuFichier);
 		dateSimulation = 0;
 		dessine();    // mettre a jour l'affichage
 	}
@@ -120,7 +124,7 @@ public class Simulateur implements Simulable {
 						ihm.paintImage((pompiers[i].getPosition()).getColonne(), (pompiers[i].getPosition()).getLigne(), "images/roues.png", 1, 1);
 						break;
 			}
-			pompiers[i].getPosition();
+// 			pompiers[i].getPosition();
 		}
 	}
 
