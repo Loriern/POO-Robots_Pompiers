@@ -53,6 +53,9 @@ public class LecteurDonnees {
 				return donneesSim;
 	}
 
+    public DonneesSimulation getDonneesSimulation(){
+        return this.donneesSim;
+    }
 
 	// Tout le reste de la classe est prive!
 
@@ -168,7 +171,7 @@ public class LecteurDonnees {
 			System.out.println("position = (" + lig + "," + col
 					+ ");\t intensite = " + intensite);
 
-			donneesSim.ajouteIncendie(new Incendie(donneesSim.getCarte().getCase(lig, col), intensite));
+			donneesSim.getIncendies().add(new Incendie(donneesSim.getCarte().getCase(lig, col), intensite));
 
 		} catch (NoSuchElementException e) {
 			throw new ExceptionFormatDonnees("format d'incendie invalide. "
@@ -228,7 +231,7 @@ public class LecteurDonnees {
 			verifieLigneTerminee();
 
 			RobotType robotType = RobotType.valueOf(type);
-			donneesSim.initRobot(i, donneesSim.getCarte().getCase(lig, col), robotType);
+			donneesSim.initRobot(i, donneesSim.getCarte().getCase(lig, col), type);
 
 			System.out.println();
 

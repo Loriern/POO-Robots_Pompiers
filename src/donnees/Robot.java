@@ -45,7 +45,7 @@ abstract public class Robot{
 
 //     abstract public void deplacer(Case c);
 
-	abstract public RobotType getType();
+//	abstract public RobotType getType();
 
 
 	public void deverserEau(int vol){
@@ -60,7 +60,7 @@ abstract public class Robot{
 			}
 		}
 		else {
-			System.out.println("Le " + this.getType() + " ne peut se vider de la quatité demandée! Son réservoir n'est pas assez grand!");
+			System.out.println("Le " + this.getClass().getName() + " ne peut se vider de la quatité demandée! Son réservoir n'est pas assez grand!");
 		}
 	}
 
