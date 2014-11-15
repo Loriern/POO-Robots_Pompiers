@@ -1,6 +1,6 @@
 package donnees.robot;
 import donnees.*;
-public class Drone extends Robot{
+public class Drone extends Robot/* implements Voler*/ {
 // Propriétés de déplacement sur une case
 //
 // Vitesse par défault de 100 km/h, mais peut être lue dans le fichier de données
@@ -20,8 +20,8 @@ public class Drone extends Robot{
 
 	public Drone(Case depart){
 		super(depart);
-		capacite = 10000;
-		vitesse = 100;
+		this.capacite = 10000;
+		this.vitesse = 100;
 	}
 
 	public RobotType getType(){
@@ -43,5 +43,9 @@ public class Drone extends Robot{
 		else {
 			System.out.println("Le drône ne remplit son réservoir qu'au-dessus de l'eau !");
 		}
+	}
+
+	public void deplacer(Carte carte, Direction dir){
+		super.setPosition(carte.getVoisin(this.position, dir));
 	}
 }
