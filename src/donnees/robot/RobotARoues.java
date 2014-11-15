@@ -44,4 +44,8 @@ public class RobotARoues extends Robot{
 			super.capacite = 5000;
 		}
 	}
+
+	public void deplacer(Carte carte, Direction dir){
+		super.setPosition(carte.getVoisin(this.position, dir));
+	}
 }

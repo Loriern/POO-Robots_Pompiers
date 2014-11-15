@@ -1,4 +1,5 @@
-package donnees;
+package donnees.evenements;
+import donnees.*;
 
 public class EvenementMessage extends Evenement {
 	private String message;

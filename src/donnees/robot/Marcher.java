@@ -1,5 +1,6 @@
 package donnees.robot;
 import donnees.*;
-public class Marcher implements Deplacement {
 
+public interface Marcher {
+	public void mercher();
 }

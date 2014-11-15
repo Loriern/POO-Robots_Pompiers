@@ -19,6 +19,7 @@ public class Simulateur implements Simulable {
 		this.events = new PriorityQueue<Evenement>();
 		this.manager = new ManagerScenario(this);
 		simData = LecteurDonnees.initData(fileName);
+		this.manager.manage();
 		ihm = new IGSimulateur(simData.getCarte().getNbColonnes(), simData.getCarte().getNbLignes(), this);
 		dessine();    // mettre a jour l'affichage
 	}
@@ -26,8 +27,8 @@ public class Simulateur implements Simulable {
 	@Override
 	public void next() {
 		incrementeDate();
-		System.out.println("TODO: avancer la simulation \"d'un pas de temps\": " + dateSimulation);
-		System.out.println("  => On voit ce que ça donne!");
+// 		System.out.println("TODO: avancer la simulation \"d'un pas de temps\": " + dateSimulation);
+// 		System.out.println("  => On voit ce que ça donne!");
 		dessine();    // mettre a jour l'affichage
 	}
 

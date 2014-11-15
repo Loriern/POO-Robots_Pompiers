@@ -46,4 +46,8 @@ public class RobotAPattes extends Robot{
 	public void remplirReservoir(){
 		return;	// :)
 	}
+
+	public void deplacer(Carte carte, Direction dir){
+		super.setPosition(carte.getVoisin(this.position, dir));
+	}
 }
