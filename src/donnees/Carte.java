@@ -33,7 +33,7 @@ public class Carte{
 		return grille[0].length;
 	}
 
-	public int TailleCases(){
+	public int getTailleCases(){
 		return this.tailleCases;
 	}
 
@@ -95,6 +95,18 @@ public class Carte{
 		else {
 			System.out.println("La case (" + src.getLigne() + ";" + src.getColonne() + ") ne possède pas de voisin dans la direction " + dir + " !");
 			return src;
+		}
+	}
+
+	public boolean nextToWater(Case c) {
+		if((this.voisinExiste(c, Direction.NORD) /*== true*/ && this.getVoisin(c, Direction.NORD).getNature() == NatureTerrain.EAU)
+			|| (this.voisinExiste(c, Direction.SUD) /*== true*/ && this.getVoisin(c, Direction.SUD).getNature() == NatureTerrain.EAU)
+			|| (this.voisinExiste(c, Direction.EST) /*== true*/ && this.getVoisin(c, Direction.EST).getNature() == NatureTerrain.EAU)
+			|| (this.voisinExiste(c, Direction.OUEST) /*== true*/ && this.getVoisin(c, Direction.OUEST).getNature() == NatureTerrain.EAU)) {
+				return true;
+		}
+		else {
+			return false;
 		}
 	}
 }
