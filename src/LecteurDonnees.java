@@ -168,8 +168,7 @@ public class LecteurDonnees {
 			System.out.println("position = (" + lig + "," + col
 					+ ");\t intensite = " + intensite);
 
-			Incendie incendie = new Incendie(donneesSim.getCarte().getCase(lig, col), intensite);
-			donneesSim.ajouteIncendie(incendie);
+			donneesSim.ajouteIncendie(new Incendie(donneesSim.getCarte().getCase(lig, col), intensite));
 
 		} catch (NoSuchElementException e) {
 			throw new ExceptionFormatDonnees("format d'incendie invalide. "
