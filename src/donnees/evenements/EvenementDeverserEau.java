@@ -16,21 +16,22 @@ public class EvenementDeverserEau extends Evenement {
 	}
 
 	public void execute(){
+		int eau = this.robot.quantiteIntervention();
 		if (incendie.getIntensite() > 0) {
 			switch (robot.getType()) {
 				case DRONE:
-						deverserDrone(5000);
+						deverserDrone(eau);
 						break;
 				case CHENILLES:
-						deverserChenilles(5000);
+						deverserChenilles(eau);
 				case PATTES:
-						deverserPattes(5000);
+						deverserPattes(eau);
 						break;
 				case ROUES:
-						deverserRoues(5000);
+						deverserRoues(eau);
 						break;
 			}
-			incendie.extinction(5000);
+			incendie.extinction(eau);
 		}
 		else {
 			System.out.println("Il n'y a plus besoin de vider le " + robot.getType().toString() + "!");

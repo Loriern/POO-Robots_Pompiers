@@ -48,11 +48,20 @@ public class RobotAPattes extends Robot{
 		return Integer.MAX_VALUE;
 	}
 
-	public void remplirReservoir(){
+	public void remplirReservoir(Carte carte){
 		return;	// :)
 	}
 
-// 	public void deplacer(Carte carte, Direction dir){
-// 		super.setPosition(carte.getVoisin(this.position, dir));
-// 	}
+
+	public int tempsPourRemplir(){
+		return 0;
+	}
+
+	public int tempsIntervention(){
+		return 1;
+	}
+
+	public int quantiteIntervention(){
+		return 10;
+	}
 }

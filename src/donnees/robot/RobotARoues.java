@@ -17,12 +17,19 @@ public class RobotARoues extends Robot{
 // Extinction
 //
 // Intervention unitaire : 100 litres en 5 sec.
+	int trois = 0;	// S'assure d'obtenir des valeurs correctes malgré la division par 3
 
     public RobotARoues(Case depart){
 		super(depart);
 		this.capacite = 5000;
 		this.vitesse = 80;
 	}
+
+	public RobotARoues(Case pos, int vitesse) {
+		this(pos);
+		this.vitesse = vitesse;
+	}
+
 
 	public RobotType getType(){
 		return RobotType.ROUES;
@@ -42,14 +49,33 @@ public class RobotARoues extends Robot{
 		return 5000;
 	}
 
-	public void remplirReservoir(){
-		super.capacite += 500;
-		if (super.capacite > 5000){
-			super.capacite = 5000;
+	public void remplirReservoir(Carte carte){
+		if (carte.nextToWater(this.position)) {
+			if (trois == 2) {
+				super.capacite += 9;
+				trois = 0;
+			}
+			else {
+				super.capacite += 8;
+				trois++;
+			}
+
+			if (super.capacite > 5000){
+				super.capacite = 5000;
+			}
 		}
 	}
 
-// 	public void deplacer(Carte carte, Direction dir){
-// 		super.setPosition(carte.getVoisin(this.position, dir));
-// 	}
+
+	public int tempsPourRemplir(){
+		return 600;
+	}
+
+	public int tempsIntervention(){
+		return 5;
+	}
+
+	public int quantiteIntervention(){
+		return 100;
+	}
 }

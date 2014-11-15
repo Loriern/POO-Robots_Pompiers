@@ -49,18 +49,25 @@ abstract public class Robot{
 
 
 	public void deverserEau(int vol){
-		if (capacite >= vol)
-		    this.capacite -= vol;
+		if (vol <= this.getCapaciteMax()) {
+			if (capacite >= vol) {
+				this.capacite -= vol;
+			}
+			else {
+				capacite = 0;
+				System.out.println("(Quantité d'eau mise à 0)");
+	// 		    remplirReservoir();
+			}
+		}
 		else {
-		    capacite = 0;
-		    System.out.println("Le " + this.getType() + " ne peut se vider de la quatité demandée!");
-		    System.out.println("(Quantité d'eau: " + this.capacite + ")");
-// 		    remplirReservoir();
+			System.out.println("Le " + this.getType() + " ne peut se vider de la quatité demandée! Son réservoir n'est pas assez grand!");
 		}
 	}
 
-	// Quand mettre le while ?
-	//	-> Pour l'instant, implémenté à la minute
-	abstract public void remplirReservoir();
-	// Rajouter vérification que l'on peut remplir (terrain)
+	//	-> Pour l'instant, implémenté à la seconde
+	abstract public void remplirReservoir(Carte carte);
+
+	abstract public int tempsPourRemplir();		// Secondes
+	abstract public int tempsIntervention();		// Secondes
+	abstract public int quantiteIntervention();	// Litres
 }

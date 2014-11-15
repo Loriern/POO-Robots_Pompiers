@@ -19,11 +19,24 @@ public class RobotAChenilles extends Robot{
 // Extinction
 //
 // Intervention unitaire : 100 litres en 8 sec.
+	int trois = 0;	// S'assure d'obtenir des valeurs correctes malgré la division par 3
 
     public RobotAChenilles(Case depart){
 		super(depart);
 		this.capacite = 2000;
 		this.vitesse = 60;
+	}
+
+	public RobotAChenilles(Case pos, int vitesse) {
+		this(pos);
+		if(vitesse > 0) {
+			if (vitesse >= 80) {
+				this.vitesse = 80;
+			}
+			else {
+				this.vitesse = vitesse;
+			}
+		}
 	}
 
 	public RobotType getType(){
@@ -47,14 +60,33 @@ public class RobotAChenilles extends Robot{
 		return 2000;
 	}
 
-	public void remplirReservoir(){
-		super.capacite += 400;
-		if (super.capacite > 2000){
-			super.capacite = 2000;
+	public void remplirReservoir(Carte carte){
+		if (carte.nextToWater(this.position)) {
+			if (trois == 2) {
+				super.capacite += 6;
+				trois = 0;
+			}
+			else {
+				super.capacite += 7;
+				trois++;
+			}
+
+			if (super.capacite > 2000){
+				super.capacite = 2000;
+			}
 		}
 	}
 
-// 	public void deplacer(Carte carte, Direction dir){
-// 		super.setPosition(carte.getVoisin(this.position, dir));
-// 	}
+
+	public int tempsPourRemplir(){
+		return 300;
+	}
+
+	public int tempsIntervention(){
+		return 8;
+	}
+
+	public int quantiteIntervention(){
+		return 100;
+	}
 }

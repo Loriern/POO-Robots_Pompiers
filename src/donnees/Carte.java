@@ -97,4 +97,16 @@ public class Carte{
 			return src;
 		}
 	}
+
+	public boolean nextToWater(Case c) {
+		if((this.voisinExiste(c, Direction.NORD) /*== true*/ && this.getVoisin(c, Direction.NORD).getNature() == NatureTerrain.EAU)
+			|| (this.voisinExiste(c, Direction.SUD) /*== true*/ && this.getVoisin(c, Direction.SUD).getNature() == NatureTerrain.EAU)
+			|| (this.voisinExiste(c, Direction.EST) /*== true*/ && this.getVoisin(c, Direction.EST).getNature() == NatureTerrain.EAU)
+			|| (this.voisinExiste(c, Direction.OUEST) /*== true*/ && this.getVoisin(c, Direction.OUEST).getNature() == NatureTerrain.EAU)) {
+				return true;
+		}
+		else {
+			return false;
+		}
+	}
 }

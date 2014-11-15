@@ -2,10 +2,12 @@ package donnees.evenements;
 import donnees.*;
 
 public class EvenementRemplirReservoir extends Evenement {
+	private Carte carte;
 	private Robot robot;
 
-	public EvenementRemplirReservoir(long date, Robot robotARemplir){
+	public EvenementRemplirReservoir(long date, Carte map, Robot robotARemplir){
 		super(date);
+		this.carte = map;
 		this.robot = robotARemplir;
 	}
 
@@ -26,24 +28,24 @@ public class EvenementRemplirReservoir extends Evenement {
 			}
 		}
 		else {
-			System.out.println("Il n'y a plus besoin de vider le " + robot.getType().toString() + "!");
+			System.out.println("Il n'y a plus besoin de remplir le " + robot.getType().toString() + "!");
 			return;
 		}
 	}
 
 	private void remplirDrone(){
-		this.robot.remplirReservoir();
+		this.robot.remplirReservoir(carte);
 	}
 
 	private void remplirChenilles(){
-		this.robot.remplirReservoir();
+		this.robot.remplirReservoir(carte);
 	}
 
 	private void remplirPattes(){
-		this.robot.remplirReservoir();
+		this.robot.remplirReservoir(carte);
 	}
 
 	private void remplirRoues(){
-		this.robot.remplirReservoir();
+		this.robot.remplirReservoir(carte);
 	}
 }
