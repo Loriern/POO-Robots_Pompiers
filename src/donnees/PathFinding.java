@@ -15,7 +15,7 @@ public class PathFinding {
 		this.robot = robotAPlanifier;
 		this.objectif = destinationFinale;
 		this.listeOuverte = new LinkedList<PathNode>();
-		this.listeOuverte.add(this.robot.getPosition());
+		this.listeOuverte.add(new PathNode(this.robot.getPosition()));
 		this.listeFermee = new PriorityQueue<PathNode>();
 	}
 
@@ -23,7 +23,21 @@ public class PathFinding {
 		return carte.getVoisin(source, source.getOrientation(destination));
 	}
 
-	// Il faudra vérifier que Robot.getVitesse(NatureTerrain) ne renvoie pas 0
+
+	public void etudieCaseAutour(Case centre){
+		if (centre.getOrientation() != Direction.ID) {	// Si on n'est pas à l'objectif
+			if (carte.voisinExiste(centre, Direction.NORD) && robot.getVitesse(carte.getVoisin(centre, Direction.NORD)) > 0)
+				this.listeOuverte.add(new PathNode(centre, carte.getVoisin(centre, Direction.NORD)));
+			if (carte.voisinExiste(centre, Direction.SUD) && robot.getVitesse(carte.getVoisin(centre, Direction.SUD)) > 0)
+				this.listeOuverte.add(new PathNode(centre, carte.getVoisin(centre, Direction.SUD)));
+			if (carte.voisinExiste(centre, Direction.EST) && robot.getVitesse(carte.getVoisin(centre, Direction.EST)) > 0)
+				this.listeOuverte.add(new PathNode(centre, carte.getVoisin(centre, Direction.EST)));
+			if (carte.voisinExiste(centre, Direction.OUEST) && robot.getVitesse(carte.getVoisin(centre, Direction.OUEST)) > 0)
+				this.listeOuverte.add(new PathNode(centre, carte.getVoisin(centre, Direction.OUEST)));
+		} else {
+			System.out.println("On a déjà atteint l'objectif : (" + objectif.getLigne() + ", " + objectif.getColonne() + ")");
+		}
+	}
 
 	// Une fois le Pathfinding fini, il faut générer les événements (getDate())
 }
