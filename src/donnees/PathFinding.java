@@ -39,8 +39,20 @@ public class PathFinding {
 		}
 	}
 
-	private void etudieEntourage(){
+	private PathNode nextDestination(){
+		int tailleListe = this.listeOuverte.size();
 
+		PathNode realiseBestPertinence = this.listeOuverte.getFirst();
+		double bestPertinenceOfList = realiseBestPertinence.getPertinence();
+
+
+		for (int i = 1; i < tailleListe; i++) {
+			if (bestPertinenceOfList > this.listeOuverte.get(i).getPertinence()) {
+				realiseBestPertinence = this.listeOuverte.get(i);
+			}
+		}
+
+		return realiseBestPertinence;
 	}
 
 
