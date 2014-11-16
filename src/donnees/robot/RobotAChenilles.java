@@ -39,9 +39,7 @@ public class RobotAChenilles extends Robot{
 		}
 	}
 
-	public RobotType getType(){
-		return RobotType.CHENILLES;
-	}
+
 
 	public double getVitesse(NatureTerrain natureDuTerrain){
 		if (natureDuTerrain.equals(NatureTerrain.EAU) || natureDuTerrain.equals(NatureTerrain.ROCHE)) {

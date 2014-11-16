@@ -31,10 +31,6 @@ public class RobotARoues extends Robot{
 	}
 
 
-	public RobotType getType(){
-		return RobotType.ROUES;
-	}
-
 	public double getVitesse(NatureTerrain natureDuTerrain){
 		if (natureDuTerrain.equals(NatureTerrain.HABITAT) || natureDuTerrain.equals(NatureTerrain.TERRAIN_LIBRE)) {
 			return 80;

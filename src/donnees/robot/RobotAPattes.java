@@ -23,10 +23,6 @@ public class RobotAPattes extends Robot{
 		this.vitesse = 30;
 	}
 
-	public RobotType getType(){
-		return RobotType.PATTES;
-	}
-
 	public double getVitesse(NatureTerrain natureDuTerrain){
 		if (natureDuTerrain.equals(NatureTerrain.EAU)) {
 			return 0;
