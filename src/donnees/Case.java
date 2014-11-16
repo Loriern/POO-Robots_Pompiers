@@ -57,4 +57,13 @@ public class Case {
 		else									// A partir de là : this.colonne == c.colonne aussi
 			return Direction.ID;
 	}
+
+
+	public boolean equalsTile(Case c) {
+		if(this==c) {
+			return true;
+		}
+
+		return this.ligne == c.getLigne() && this.colonne == c.getColonne();
+	}
 }
