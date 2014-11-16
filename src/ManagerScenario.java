@@ -52,8 +52,8 @@ public class ManagerScenario extends Manager {
 		j++;
 
 
-		if ((incendieAEteindre.getIntensite())/(roues.quantiteIntervention()) < nbInterventionsRoues) {
-			nbInterventionsRoues = (incendieAEteindre.getIntensite())/(roues.quantiteIntervention());
+		if ((incendieAEteindre.getIntensite() - nbInterventionsRoues*roues.quantiteIntervention())/(roues.quantiteIntervention()) < nbInterventionsRoues) {
+			nbInterventionsRoues = (incendieAEteindre.getIntensite() - nbInterventionsRoues*roues.quantiteIntervention())/(roues.quantiteIntervention());	// Si on ajoute +1, on s'aasure que le feu est éteint.
 		}
 		for (int i = 0; i < nbInterventionsRoues; i++) {
 			getSimulateur().ajouteEvenement(new EvenementDeverserEau(j, roues, listeDIncendies, incendieAEteindre));
