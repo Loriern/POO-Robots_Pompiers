@@ -49,7 +49,7 @@ public class Simulateur implements Simulable {
 		try {
 			for (int i = 0; i < simData.getCarte().getNbLignes(); i++) {
 				for (int j = 0; j < simData.getCarte().getNbColonnes(); j++) {
-					ihm.paintBox(j, i, Color.GREEN);	// Attention, vicieux : la méthode demande la colonne d'abord
+				    ihm.paintImage(j, i, "images/terrain_libre.png", 1, 1);	// Attention, vicieux : la méthode demande la colonne d'abord
 					dessineCase(j,i);
 				}
 			}
