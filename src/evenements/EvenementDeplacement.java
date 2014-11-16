@@ -28,7 +28,7 @@ public class EvenementDeplacement extends Evenement {
             }
 		}
 		else {
-			System.out.println("Error : " + robot.getClass() + " ne peut continuer à aller " + direction.toString() + "!");
+			System.out.println("Error : " + robot.getType() + " ne peut continuer à aller " + direction.toString() + "!");
 			return;
 		}
 	}

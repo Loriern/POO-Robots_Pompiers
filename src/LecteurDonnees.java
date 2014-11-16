@@ -230,7 +230,7 @@ public class LecteurDonnees {
 			}
 			verifieLigneTerminee();
 
-			RobotType robotType = RobotType.valueOf(type);
+			//RobotType robotType = RobotType.valueOf(type);
 			donneesSim.initRobot(i, donneesSim.getCarte().getCase(lig, col), type);
 
 			System.out.println();

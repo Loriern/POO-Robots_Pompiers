@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 import donnees.*;
-import donnees.evenements.*;
+import evenements.*;
 
 public class ManagerScenario extends Manager {
 
@@ -10,22 +10,22 @@ public class ManagerScenario extends Manager {
 	}
 
 	public void manage(){
-		Carte map = super.getSimulateur().getDonneesSimulation().getCarte();
-		Robot drone = super.getSimulateur().getDonneesSimulation().getRobots()[0];
-		Robot roues = super.getSimulateur().getDonneesSimulation().getRobots()[1];
-		LinkedList<Incendie> listeDIncendies = super.getSimulateur().getDonneesSimulation().getIncendies();
-		Incendie incendieAEteindre = super.getSimulateur().getDonneesSimulation().getIncendie(4);
+		Carte map = getSimulateur().getDonneesSimulation().getCarte();
+		Robot drone = getSimulateur().getDonneesSimulation().getRobots()[0];
+		Robot roues = getSimulateur().getDonneesSimulation().getRobots()[1];
+		LinkedList<Incendie> listeDIncendies = getSimulateur().getDonneesSimulation().getIncendies();
+		Incendie incendieAEteindre = getSimulateur().getDonneesSimulation().getIncendie(4);
 
 		int nbInterventionsRoues = (roues.getCapaciteMax())/(roues.quantiteIntervention());
 
 // 		super.getSimulateur().ajouteEvenement(new EvenementDeplacement(i, map, drone, NORD));	// i dépendant de la vitesse
-		super.getSimulateur().ajouteEvenement(new EvenementDeplacement(1, map, drone, Direction.NORD));
-		super.getSimulateur().ajouteEvenement(new EvenementDeplacement(2, map, drone, Direction.NORD));
-		super.getSimulateur().ajouteEvenement(new EvenementDeplacement(3, map, drone, Direction.NORD));
-		super.getSimulateur().ajouteEvenement(new EvenementDeplacement(4, map, drone, Direction.NORD));
+		getSimulateur().ajouteEvenement(new EvenementDeplacement(1, map, drone, Direction.NORD));
+		getSimulateur().ajouteEvenement(new EvenementDeplacement(2, map, drone, Direction.NORD));
+		getSimulateur().ajouteEvenement(new EvenementDeplacement(3, map, drone, Direction.NORD));
+		getSimulateur().ajouteEvenement(new EvenementDeplacement(4, map, drone, Direction.NORD));
 /////////////////////////////////// - Fin Drône
 		int j = 1;
-		super.getSimulateur().ajouteEvenement(new EvenementDeplacement(j, map, roues, Direction.NORD));
+		getSimulateur().ajouteEvenement(new EvenementDeplacement(j, map, roues, Direction.NORD));
 
 		j++;
 		// A automatiser
@@ -33,12 +33,12 @@ public class ManagerScenario extends Manager {
 			nbInterventionsRoues = (incendieAEteindre.getIntensite())/(roues.quantiteIntervention());
 		}
 		for (int i = 0; i < nbInterventionsRoues; i++) {
-			super.getSimulateur().ajouteEvenement(new EvenementDeverserEau(j, roues, listeDIncendies, incendieAEteindre));
+			getSimulateur().ajouteEvenement(new EvenementDeverserEau(j, roues, listeDIncendies, incendieAEteindre));
 			j++;
 		}
-		super.getSimulateur().ajouteEvenement(new EvenementDeplacement(j, map, roues, Direction.OUEST));
+		getSimulateur().ajouteEvenement(new EvenementDeplacement(j, map, roues, Direction.OUEST));
 		j++;
-		super.getSimulateur().ajouteEvenement(new EvenementDeplacement(j, map, roues, Direction.OUEST));
+		getSimulateur().ajouteEvenement(new EvenementDeplacement(j, map, roues, Direction.OUEST));
 		j++;
 
 		for (int i = 0; i < roues.tempsPourRemplir(); i++) {
@@ -46,9 +46,9 @@ public class ManagerScenario extends Manager {
 			j++;
 		}
 
-		super.getSimulateur().ajouteEvenement(new EvenementDeplacement(j, map, roues, Direction.EST));
+		getSimulateur().ajouteEvenement(new EvenementDeplacement(j, map, roues, Direction.EST));
 		j++;
-		super.getSimulateur().ajouteEvenement(new EvenementDeplacement(j, map, roues, Direction.EST));
+		getSimulateur().ajouteEvenement(new EvenementDeplacement(j, map, roues, Direction.EST));
 		j++;
 
 
@@ -56,7 +56,7 @@ public class ManagerScenario extends Manager {
 			nbInterventionsRoues = (incendieAEteindre.getIntensite())/(roues.quantiteIntervention());
 		}
 		for (int i = 0; i < nbInterventionsRoues; i++) {
-			super.getSimulateur().ajouteEvenement(new EvenementDeverserEau(j, roues, listeDIncendies, incendieAEteindre));
+			getSimulateur().ajouteEvenement(new EvenementDeverserEau(j, roues, listeDIncendies, incendieAEteindre));
 			j++;
 		}
 	}

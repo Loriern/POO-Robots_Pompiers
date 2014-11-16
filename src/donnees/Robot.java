@@ -15,6 +15,10 @@ abstract public class Robot{
 		this.position = xy;
 	}
 
+    public String getType(){
+        return this.getClass().getName().substring(14);
+    }
+
 	public int getCapacite(){
 		return this.capacite;
 	}

@@ -109,7 +109,7 @@ class Invaders implements Simulable {
 			for (int i = 6; i < 15; i++) {
 				ihm.paintBox(i, 15, Color.BLUE);
 			}
-			ihm.paintImage(4, 15, "images/feu.png", 0.8, 0.8);
+			ihm.paintImage(4, 15, "images/feu.png", 2, 5);
 			ihm.paintString(7, 15, Color.YELLOW, "I");
 			ihm.paintString(8, 15, Color.YELLOW, "N");
 			ihm.paintString(9, 15, Color.YELLOW, "V");

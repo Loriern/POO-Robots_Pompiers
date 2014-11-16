@@ -12,16 +12,16 @@ abstract public class Evenement implements Comparable<Evenement> {
 	}
 
 	public int compareTo(Evenement e){
-		return (int) (this.date - e.getDate());	// ATTENTION : date est un long
-// 		if (this.date > e.getDate()) {
-// 			return 1;
-// 		}
-// 		else if (this.date == e.getDate()) {
-// 			return 0;
-// 		}
-// 		else {
-// 			return -1;
-// 		}
+		//return (int) (this.date - e.getDate());	// ATTENTION : date est un long
+ 		if (this.date > e.getDate()) {
+ 			return 1;
+ 		}
+ 		else if (this.date == e.getDate()) {
+ 			return 0;
+ 		}
+ 		else {
+ 			return -1;
+ 		}
 	}
 
 	abstract public void execute();
