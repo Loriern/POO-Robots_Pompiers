@@ -1,41 +1,29 @@
 package donnees;
 
+import java.util.*;
+
 public class PathFinding {
 	private Carte carte;
+	private Robot robot;
+	private Case objectif;
 
-	public PathFinding(Carte map){
+	private LinkedList<PathNode> listeOuverte;
+	private PriorityQueue<PathNode> listeFermee;	// Contient la solution, gardez pour le moment ce nom svp, il est utilisé dans toutes les docs
+
+	public PathFinding(Carte map, Robot robotAPlanifier, Case destinationFinale){
 		this.carte = map;
+		this.robot = robotAPlanifier;
+		this.objectif = destinationFinale;
+		this.listeOuverte = new LinkedList<PathNode>();
+		this.listeOuverte.add(this.robot.getPosition());
+		this.listeFermee = new PriorityQueue<PathNode>();
 	}
 
 	public Case suivant(Case source, Case destination){
-		switch(source.getOrientation(destination)) {
-			case NORD:
-					return source;
-					break;
-			case SUD:
-					s += "au Sud";
-					break;
-			case EST:
-					s += "à l'Est";
-					break;
-			case OUEST:
-					s += "à l'Ouest";
-					break;
-			case NORDEST:
-					s += "au Nord-Est";
-					break;
-			case SUDEST:
-					s += "au Sud-Est";
-					break;
-			case NORDOUEST:
-					s += "au Nord-Ouest";
-					break;
-			case SUDOUEST:
-					s += "au Sud-Ouest";
-					break;
-			case ID:
-					s += "sur la même case";
-					break;
-		}
+		return carte.getVoisin(source, source.getOrientation(destination));
 	}
+
+	// Il faudra vérifier que Robot.getVitesse(NatureTerrain) ne renvoie pas 0
+
+	// Une fois le Pathfinding fini, il faut générer les événements (getDate())
 }
