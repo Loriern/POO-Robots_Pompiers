@@ -167,7 +167,7 @@ public class PathFinding {
 		for (int i = 1; i < tailleListe; i++) {
 			if (bestPertinenceOfList > this.listeOuverte.get(i).getPertinence()) {
 				realiseBestPertinence = this.listeOuverte.get(i);
-				bestPertinenceofList = realiseBestPertinence.getPertinence();
+				bestPertinenceOfList = realiseBestPertinence.getPertinence();
 			}
 		}
 
