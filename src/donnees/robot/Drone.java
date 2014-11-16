@@ -38,9 +38,12 @@ public class Drone extends Robot/* implements Voler*/ {
 	}
 
 
+    
+
+/*  POUR TESTER SI UN ROBOT EST UN DRONE ON PEUT FAIRE : if(robot instanceof Drone) {...}
 	public RobotType getType(){
 		return RobotType.DRONE;
-	}
+	}*/
 
 	public double getVitesse(NatureTerrain natureDuTerrain){
 		return vitesse;

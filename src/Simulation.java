@@ -1,6 +1,6 @@
 import java.io.*;
 import donnees.*;
-import donnees.evenements.*;
+import evenements.*;
 
 public class Simulation {
 	public static void main(String[] args) {

@@ -4,26 +4,27 @@ import java.awt.Color;
 
 import ihm.*;
 import donnees.*;
+import donnees.robot.*;
 
 
 public class Simulateur implements Simulable {
+
     private DonneesSimulation simData;
-	private IGSimulateur ihm;
-    private long dateSimulation/* = 0*/;
+    private long dateSimulation;
     private PriorityQueue<Evenement> events;
     private Manager manager;
-// 	private String nomDuFichier;
+    private IGSimulateur ihm;
 
-	public Simulateur(String fileName)
-			throws FileNotFoundException, ExceptionFormatDonnees {
-		this.dateSimulation = 0;
-// 		this.nomDuFichier = filename;
-		this.events = new PriorityQueue<Evenement>();
-		this.manager = new ManagerScenario(this);
-		simData = LecteurDonnees.initData(fileName);
-		this.manager.manage();
-		ihm = new IGSimulateur(simData.getCarte().getNbColonnes(), simData.getCarte().getNbLignes(), this);
-		dessine();    // mettre a jour l'affichage
+    public Simulateur(String fileName)
+        throws FileNotFoundException, ExceptionFormatDonnees {
+        this.dateSimulation = 0;
+        // 		this.nomDuFichier = filename;
+        this.events = new PriorityQueue<Evenement>();
+        this.manager = new ManagerScenario(this);
+        simData = LecteurDonnees.initData(fileName);
+        this.manager.manage();
+        ihm = new IGSimulateur(simData.getCarte().getNbColonnes(), simData.getCarte().getNbLignes(), this);
+        dessine();    // mettre a jour l'affichage
 	}
 
 	@Override
@@ -110,21 +111,15 @@ public class Simulateur implements Simulable {
 	private void dessineRobots(Robot[] pompiers)
 			throws MapIndexOutOfBoundsException {
 		for(int i = 0; i < pompiers.length; i++) {
-			switch (pompiers[i].getType()) {
-				case DRONE:
-						ihm.paintImage((pompiers[i].getPosition()).getColonne(), (pompiers[i].getPosition()).getLigne(), "images/drone.png", 1, 1);
-						break;
-				case CHENILLES:
-						ihm.paintImage((pompiers[i].getPosition()).getColonne(), (pompiers[i].getPosition()).getLigne(), "images/chenilles.png", 1, 1);
-						break;
-				case PATTES:
-						ihm.paintImage((pompiers[i].getPosition()).getColonne(), (pompiers[i].getPosition()).getLigne(), "images/pattes.png", 1, 1);
-						break;
-				case ROUES:
-						ihm.paintImage((pompiers[i].getPosition()).getColonne(), (pompiers[i].getPosition()).getLigne(), "images/roues.png", 1, 1);
-						break;
-			}
-// 			pompiers[i].getPosition();
+            if(pompiers[i].getClass() == Drone.class)
+                    ihm.paintImage((pompiers[i].getPosition()).getColonne(), (pompiers[i].getPosition()).getLigne(), "images/drone.png", 1, 1);
+            else if (pompiers[i].getClass() == RobotAChenilles.class)
+                ihm.paintImage((pompiers[i].getPosition()).getColonne(), (pompiers[i].getPosition()).getLigne(), "images/chenilles.png", 1, 1);
+			else if (pompiers[i].getClass() == RobotAPattes.class)
+                ihm.paintImage((pompiers[i].getPosition()).getColonne(), (pompiers[i].getPosition()).getLigne(), "images/pattes.png", 1, 1);
+			else if (pompiers[i].getClass() == RobotARoues.class)
+                ihm.paintImage((pompiers[i].getPosition()).getColonne(), (pompiers[i].getPosition()).getLigne(), "images/roues.png", 1, 1);
+			
 		}
 	}
 

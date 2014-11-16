@@ -5,7 +5,7 @@ public enum NatureTerrain {
 	HABITAT,
 	ROCHE,
 	TERRAIN_LIBRE;
-
+/*
 	public String toString(){
 		String s = new String("");
 
@@ -28,5 +28,5 @@ public enum NatureTerrain {
 		}
 
 		return s;
-	}
+	}*/
 }
