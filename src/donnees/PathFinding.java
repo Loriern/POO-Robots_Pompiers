@@ -19,12 +19,12 @@ public class PathFinding {
 		this.listeFermee = new PriorityQueue<PathNode>();
 	}
 
-	public Case suivant(Case source, Case destination){
-		return carte.getVoisin(source, source.getOrientation(destination));
-	}
+// 	public Case suivant(Case source, Case destination){
+// 		return carte.getVoisin(source, source.getOrientation(destination));
+// 	}
 
-
-	public void etudieCaseAutour(Case centre){
+	// Remplissage Liste Ouverte
+	private void remplirListeOuverte(Case centre){
 		if (centre.getOrientation() != Direction.ID) {	// Si on n'est pas à l'objectif
 			if (carte.voisinExiste(centre, Direction.NORD) && robot.getVitesse(carte.getVoisin(centre, Direction.NORD)) > 0)
 				this.listeOuverte.add(new PathNode(centre, carte.getVoisin(centre, Direction.NORD)));
@@ -38,6 +38,13 @@ public class PathFinding {
 			System.out.println("On a déjà atteint l'objectif : (" + objectif.getLigne() + ", " + objectif.getColonne() + ")");
 		}
 	}
+
+	private void etudieEntourage(){
+
+	}
+
+
+
 
 	// Une fois le Pathfinding fini, il faut générer les événements (getDate())
 }

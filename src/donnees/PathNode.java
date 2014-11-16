@@ -18,8 +18,13 @@ public class PathNode {
 		this.node = ceNode;
 		this.parent = nodeParent;
 		this.calcG();
+		this.calcH();
+		this.calcPertinence();
     }
 
+    public double getPertinence(){
+		return this.pertinence;
+    }
 
 
 
