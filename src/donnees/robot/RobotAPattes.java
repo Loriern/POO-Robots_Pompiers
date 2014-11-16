@@ -28,10 +28,10 @@ public class RobotAPattes extends Robot{
 			return 0;
 		}
 		else if (natureDuTerrain.equals(NatureTerrain.ROCHE)) {
-			return 10; 	// 0.5*60
+			return 10;
 		}
 		else {
-			return 30;
+			return this.vitesse;
 		}
 	}
 

@@ -46,10 +46,10 @@ public class RobotAChenilles extends Robot{
 			return 0;
 		}
 		else if (natureDuTerrain.equals(NatureTerrain.FORET)) {
-			return vitesse / 2; 	// 0.5*60
+			return (this.vitesse) / 2;
 		}
 		else {
-			return 60;
+			return this.vitesse;
 		}
 	}
 

@@ -33,7 +33,7 @@ public class RobotARoues extends Robot{
 
 	public double getVitesse(NatureTerrain natureDuTerrain){
 		if (natureDuTerrain.equals(NatureTerrain.HABITAT) || natureDuTerrain.equals(NatureTerrain.TERRAIN_LIBRE)) {
-			return 80;
+			return this.vitesse;
 		}
 		else {
 			return 0;
