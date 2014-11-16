@@ -15,11 +15,9 @@ abstract public class Evenement implements Comparable<Evenement> {
 		//return (int) (this.date - e.getDate());	// ATTENTION : date est un long
  		if (this.date > e.getDate()) {
  			return 1;
- 		}
- 		else if (this.date == e.getDate()) {
+ 		} else if (this.date == e.getDate()) {
  			return 0;
- 		}
- 		else {
+ 		} else {
  			return -1;
  		}
 	}

@@ -95,14 +95,11 @@ public class Simulateur implements Simulable {
 		for(Incendie i : incendies) {
 			if (i.getIntensite()<5000) {
 				ihm.paintImage((i.getPosition()).getColonne(), (i.getPosition()).getLigne(), "images/feu.png", 0.5, 0.5);
-			}
-			else if (i.getIntensite()<10000) {
+			} else if (i.getIntensite()<10000) {
 				ihm.paintImage((i.getPosition()).getColonne(), (i.getPosition()).getLigne(), "images/feu.png", 0.7, 0.7);
-			}
-			else if (i.getIntensite()<15000) {
+			} else if (i.getIntensite()<15000) {
 				ihm.paintImage((i.getPosition()).getColonne(), (i.getPosition()).getLigne(), "images/feu.png", 0.9, 0.9);
-			}
-			else {
+			} else {
 				ihm.paintImage((i.getPosition()).getColonne(), (i.getPosition()).getLigne(), "images/feu.png", 1, 1);
 			}
 		}
@@ -112,14 +109,14 @@ public class Simulateur implements Simulable {
 			throws MapIndexOutOfBoundsException {
 		for(int i = 0; i < pompiers.length; i++) {
             if(pompiers[i].getClass() == Drone.class)
-                    ihm.paintImage((pompiers[i].getPosition()).getColonne(), (pompiers[i].getPosition()).getLigne(), "images/drone.png", 1, 1);
+				ihm.paintImage((pompiers[i].getPosition()).getColonne(), (pompiers[i].getPosition()).getLigne(), "images/drone.png", 1, 1);
             else if (pompiers[i].getClass() == RobotAChenilles.class)
                 ihm.paintImage((pompiers[i].getPosition()).getColonne(), (pompiers[i].getPosition()).getLigne(), "images/chenilles.png", 1, 1);
 			else if (pompiers[i].getClass() == RobotAPattes.class)
                 ihm.paintImage((pompiers[i].getPosition()).getColonne(), (pompiers[i].getPosition()).getLigne(), "images/pattes.png", 1, 1);
 			else if (pompiers[i].getClass() == RobotARoues.class)
                 ihm.paintImage((pompiers[i].getPosition()).getColonne(), (pompiers[i].getPosition()).getLigne(), "images/roues.png", 1, 1);
-			
+
 		}
 	}
 
@@ -137,8 +134,7 @@ public class Simulateur implements Simulable {
 	private boolean simulationTerminee(){
 		if (this.events.peek() != null) {
 			return false;
-		}
-		else {
+		} else {
 			return true;
 		}
 	}

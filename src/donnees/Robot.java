@@ -56,14 +56,12 @@ abstract public class Robot{
 		if (vol <= this.getCapaciteMax()) {
 			if (capacite >= vol) {
 				this.capacite -= vol;
-			}
-			else {
+			} else {
 				capacite = 0;
 				System.out.println("(Quantité d'eau mise à 0)");
 	// 		    remplirReservoir();
 			}
-		}
-		else {
+		} else {
 			System.out.println("Le " + this.getClass().getName() + " ne peut se vider de la quatité demandée! Son réservoir n'est pas assez grand!");
 		}
 	}

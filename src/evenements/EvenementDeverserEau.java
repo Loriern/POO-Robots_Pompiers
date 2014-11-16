@@ -29,10 +29,10 @@ public class EvenementDeverserEau extends Evenement {
                 deverserPattes(eau);
             }
 			incendie.extinction(eau);
-		}
-		else {
+		} else {
 			System.out.println(robot.getClass() + " est vide !");
 		}
+
 		if (incendie.getIntensite() <= 0) {
 			listeIncendies.remove(incendie);
 		}
