@@ -34,7 +34,7 @@ public class ManagerScenario extends Manager {
 		}
 		for (int i = 0; i < nbInterventionsRoues; i++) {
 			getSimulateur().ajouteEvenement(new EvenementDeverserEau(j, roues, listeDIncendies, incendieAEteindre));
-			j++;
+			j += roues.tempsIntervention();
 		}
 		getSimulateur().ajouteEvenement(new EvenementDeplacement(j, map, roues, Direction.OUEST));
 		j++;
@@ -57,7 +57,10 @@ public class ManagerScenario extends Manager {
 		}
 		for (int i = 0; i < nbInterventionsRoues; i++) {
 			getSimulateur().ajouteEvenement(new EvenementDeverserEau(j, roues, listeDIncendies, incendieAEteindre));
-			j++;
+			j += roues.tempsIntervention();
 		}
+
+		getSimulateur().ajouteEvenement(new EvenementDeplacement(j, map, roues, Direction.SUD));
+		j++;
 	}
 }

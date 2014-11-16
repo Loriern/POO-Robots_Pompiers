@@ -31,7 +31,7 @@ public class EvenementDeverserEau extends Evenement {
 			incendie.extinction(eau);
 		}
 		else {
-			System.out.println(robot.getClass() + "est vide !");
+			System.out.println(robot.getClass() + " est vide !");
 		}
 		if (incendie.getIntensite() <= 0) {
 			listeIncendies.remove(incendie);
