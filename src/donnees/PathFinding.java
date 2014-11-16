@@ -25,7 +25,7 @@ public class PathFinding {
 
 	// Remplissage Liste Ouverte
 	private void remplirListeOuverte(Case centre){
-		if (centre.getOrientation() != Direction.ID) {	// Si on n'est pas à l'objectif
+		if (centre.getOrientation(objectif) != Direction.ID) {	// Si on n'est pas à l'objectif
 			if (carte.voisinExiste(centre, Direction.NORD) && robot.getVitesse(carte.getVoisin(centre, Direction.NORD)) > 0)
 				this.listeOuverte.add(new PathNode(centre, carte.getVoisin(centre, Direction.NORD)));
 			if (carte.voisinExiste(centre, Direction.SUD) && robot.getVitesse(carte.getVoisin(centre, Direction.SUD)) > 0)
