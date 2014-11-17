@@ -13,6 +13,7 @@ public class Simulateur implements Simulable {
     private long dateSimulation;
     private PriorityQueue<Evenement> events;
     private Manager manager;
+    private Manager chefManager;
     private IGSimulateur ihm;
 //     private String nomDuFichier;
 
@@ -23,6 +24,7 @@ public class Simulateur implements Simulable {
         this.events = new PriorityQueue<Evenement>();
 //         this.manager = new ManagerScenario(this);
         this.manager = new ManagerPathFind(this);
+        this.chefManager = new ManagerChef(this);
         simData = LecteurDonnees.initData(fileName);
         this.manager.manage();
         ihm = new IGSimulateur(simData.getCarte().getNbColonnes(), simData.getCarte().getNbLignes(), this);
