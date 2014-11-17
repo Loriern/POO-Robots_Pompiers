@@ -34,11 +34,9 @@ public class PathFinding {
 		PathNode noeudCourant = this.listeOuverte.removeFirst();
 		this.listeFermee.add(noeudCourant);
 
-		while (/*!isInClosedList(objectif)*/noeudCourant.getCase() != objectif) {
-			remplirListeOuverte(noeudCourant/*.getCase()*/);
+		while (noeudCourant.getCase() != objectif) {
+			remplirListeOuverte(noeudCourant);
 			noeudCourant = updateListeSolution();
-// 			for (long j = 0; j < 100000000; j++) {;}
-			System.out.println("On s'intéresse à la case : (" + noeudCourant.getCase().getLigne() + ", " + noeudCourant.getCase().getColonne() + ")");
 			if (listeOuverte == null) {
 				System.out.println("Il n'existe pas de solution.");
 				return;
@@ -46,9 +44,7 @@ public class PathFinding {
 		}
 	}
 
-	// Remplissage Liste Ouverte
-	// Voir Nord pour un détail des if
-	private void remplirListeOuverte(/*Case*/PathNode centre){
+	private void remplirListeOuverte(PathNode centre){
 		if (centre.getCase().getOrientation(objectif) != Direction.ID) {	// Si on n'est pas à l'objectif
 			addInOpenList(centre, Direction.NORD);
 			addInOpenList(centre, Direction.SUD);
@@ -59,7 +55,7 @@ public class PathFinding {
 		}
 	}
 
-	private void addInOpenList(/*Case*/PathNode centre, Direction dir){
+	private void addInOpenList(PathNode centre, Direction dir){
 		PathNode noeudAAjouter;
 
 		if (carte.voisinExiste(centre.getCase(), dir) && robot.getVitesse(carte.getVoisin(centre.getCase(), dir).getNature()) > 0){
@@ -120,7 +116,6 @@ public class PathFinding {
 	}
 
 	private void morphIntoSolution(){
-		System.out.println("On est dans morphIntoSolution()...");
 		PathNode last = listeFermee.peek();
 		Case buffer;
 		for (PathNode p : listeFermee) {

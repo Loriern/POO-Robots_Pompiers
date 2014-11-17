@@ -17,7 +17,7 @@ public class PathNode implements Comparable<PathNode> {
 		this.calcPertinence();
     }
 
-    public PathNode(/*Case*/PathNode nodeParent, Case ceNode, Case destination){
+    public PathNode(PathNode nodeParent, Case ceNode, Case destination){
 		this.node = ceNode;
 		this.parent = nodeParent;
 		this.calcG();
