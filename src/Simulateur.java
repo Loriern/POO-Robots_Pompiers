@@ -14,13 +14,15 @@ public class Simulateur implements Simulable {
     private PriorityQueue<Evenement> events;
     private Manager manager;
     private IGSimulateur ihm;
+//     private String nomDuFichier;
 
     public Simulateur(String fileName)
         throws FileNotFoundException, ExceptionFormatDonnees {
         this.dateSimulation = 0;
-        // 		this.nomDuFichier = filename;
+// 		this.nomDuFichier = filename;
         this.events = new PriorityQueue<Evenement>();
-        this.manager = new ManagerScenario(this);
+//         this.manager = new ManagerScenario(this);
+        this.manager = new ManagerPathFind(this);
         simData = LecteurDonnees.initData(fileName);
         this.manager.manage();
         ihm = new IGSimulateur(simData.getCarte().getNbColonnes(), simData.getCarte().getNbLignes(), this);

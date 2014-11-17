@@ -2,9 +2,8 @@ package donnees;
 
 // Penser à modifier pour prendre les vitesses des robots à la place du nombre de lignes/colonnes
 public class PathNode implements Comparable<PathNode> {
-	private Case parent;
+	private PathNode parent;
 	private Case node;
-// 	private Case objectif;
 
 	private double pertinence;  // pertinence = g + h
 
@@ -13,16 +12,14 @@ public class PathNode implements Comparable<PathNode> {
 
     public PathNode(Case ceNode, Case destination){	// Première case, sans parent
 		this.node = ceNode;
-// 		this.objectif = destination;
 		this.g = 0;
 		this.calcH(destination);
 		this.calcPertinence();
     }
 
-    public PathNode(Case ceNode, Case nodeParent, Case destination){
+    public PathNode(/*Case*/PathNode nodeParent, Case ceNode, Case destination){
 		this.node = ceNode;
 		this.parent = nodeParent;
-// 		this.objectif = destination;
 		this.calcG();
 		this.calcH(destination);
 		this.calcPertinence();
@@ -40,7 +37,7 @@ public class PathNode implements Comparable<PathNode> {
 		return this.node;
     }
 
-    public Case getParent(){
+    public PathNode getParent(){
 		return this.parent;
     }
 
@@ -67,10 +64,9 @@ public class PathNode implements Comparable<PathNode> {
 
 
     private void calcG(){
-		this.g = manhattanDistance(this.parent, this.node);
+		this.g = this.parent.getG() + 1;
     }
 
-	// Manhattan Distance
     private void calcH(Case objectif){
 		this.h = this.manhattanDistance(this.node, objectif);
     }
