@@ -10,6 +10,9 @@ public class PathFinding {
 	private LinkedList<PathNode> listeOuverte;
 	private PriorityQueue<PathNode> listeFermee;	// Contient la solution, gardez pour le moment ce nom svp, il est utilisé dans toutes les docs
 
+	private LinkedList<Case> solution;
+	private double tempsSolution = 0;
+
 	public PathFinding(Carte map, Robot robotAPlanifier, Case destinationFinale){
 		this.carte = map;
 		this.robot = robotAPlanifier;
@@ -23,9 +26,10 @@ public class PathFinding {
 // 		return carte.getVoisin(source, source.getOrientation(destination));
 // 	}
 
-	public PriorityQueue<PathNode> getSolution(){
+	public LinkedList<Case> getSolution(){
 		algo();
-		return listeFermee;
+		morphIntoSolution();
+		return solution;
 	}
 
 	private void algo(){
@@ -38,7 +42,7 @@ public class PathFinding {
 			remplirListeOuverte(noeudCourant.getCase());
 			noeudCourant = updateListeSolution();
 			if (listeOuverte == null) {
-				System.out.println("Il n'existe pas de solution");
+				System.out.println("Il n'existe pas de solution.");
 				return;
 			}
 		}
@@ -47,83 +51,105 @@ public class PathFinding {
 	// Remplissage Liste Ouverte
 	// Voir Nord pour un détail des if
 	private void remplirListeOuverte(Case centre){
-		PathNode noeudAAjouter;
+// 		PathNode noeudAAjouter;
 		if (centre.getOrientation(objectif) != Direction.ID) {	// Si on n'est pas à l'objectif
 			// 	On commence en vérifiant la direction "principale"
-			if (carte.voisinExiste(centre, centre.getOrientation(objectif)) && robot.getVitesse(carte.getVoisin(centre, centre.getOrientation(objectif)).getNature()) > 0) {
-				if (!this.listeFermee.contains(carte.getVoisin(centre, centre.getOrientation(objectif)))){
-					noeudAAjouter = new PathNode(centre, carte.getVoisin(centre, centre.getOrientation(objectif)), this.objectif);
-					if (isInOpenList(noeudAAjouter) >= 0) {
-						if (noeudAAjouter.getPertinence() < listeOuverte.get(isInOpenList(noeudAAjouter)).getPertinence() ) {
-							listeOuverte.set(isInOpenList(noeudAAjouter), noeudAAjouter);
-						}
-					} else {
-						this.listeOuverte.addFirst(noeudAAjouter);
-					}
-				}
-			}
+// 			if (carte.voisinExiste(centre, centre.getOrientation(objectif)) && robot.getVitesse(carte.getVoisin(centre, centre.getOrientation(objectif)).getNature()) > 0) {
+// 				if (!this.listeFermee.contains(carte.getVoisin(centre, centre.getOrientation(objectif)))){
+// 					noeudAAjouter = new PathNode(centre, carte.getVoisin(centre, centre.getOrientation(objectif)), this.objectif);
+// 					if (isInOpenList(noeudAAjouter) >= 0) {
+// 						if (noeudAAjouter.getPertinence() < listeOuverte.get(isInOpenList(noeudAAjouter)).getPertinence() ) {
+// 							listeOuverte.set(isInOpenList(noeudAAjouter), noeudAAjouter);
+// 						}
+// 					} else {
+// 						this.listeOuverte.addFirst(noeudAAjouter);
+// 					}
+// 				}
+// 			}
 
-			// On vérifie s'il y a un obstacle
-/* Nord */	if (carte.voisinExiste(centre, Direction.NORD) && robot.getVitesse(carte.getVoisin(centre, Direction.NORD).getNature()) > 0){
-				// On vérifie que le noeud n'est pas déjà retenu
-				if (!this.listeFermee.contains(carte.getVoisin(centre, Direction.NORD))){
-					noeudAAjouter = new PathNode(centre, carte.getVoisin(centre, Direction.NORD), this.objectif);
-					// On vérifie s'il est dans la liste de ceux à étudier (liste ouverte)
-					if (isInOpenList(noeudAAjouter) >= 0) {
-						// On vérifie s'il vaut mieux le considérer avec ce nouveau parent (centre)
-						if (noeudAAjouter.getPertinence() < listeOuverte.get(isInOpenList(noeudAAjouter)).getPertinence() ) {
-							listeOuverte.set(isInOpenList(noeudAAjouter), noeudAAjouter);
-						}
-					} else {
-						this.listeOuverte.addLast(noeudAAjouter);
-					}
-				}
-			}
-
-			if (carte.voisinExiste(centre, Direction.SUD) && robot.getVitesse(carte.getVoisin(centre, Direction.SUD).getNature()) > 0){
-				if (!this.listeFermee.contains(carte.getVoisin(centre, Direction.SUD))){
-					noeudAAjouter = new PathNode(centre, carte.getVoisin(centre, Direction.SUD), this.objectif);
-					if (isInOpenList(noeudAAjouter) >= 0) {
-						if (noeudAAjouter.getPertinence() < listeOuverte.get(isInOpenList(noeudAAjouter)).getPertinence() ) {
-							listeOuverte.set(isInOpenList(noeudAAjouter), noeudAAjouter);
-						}
-					} else {
-						this.listeOuverte.addLast(noeudAAjouter);
-					}
-				}
-			}
-
-			if (carte.voisinExiste(centre, Direction.EST) && robot.getVitesse(carte.getVoisin(centre, Direction.EST).getNature()) > 0){
-				if (!this.listeFermee.contains(carte.getVoisin(centre, Direction.EST))){
-					noeudAAjouter = new PathNode(centre, carte.getVoisin(centre, Direction.EST), this.objectif);
-					if (isInOpenList(noeudAAjouter) >= 0) {
-						if (noeudAAjouter.getPertinence() < listeOuverte.get(isInOpenList(noeudAAjouter)).getPertinence() ) {
-							listeOuverte.set(isInOpenList(noeudAAjouter), noeudAAjouter);
-						}
-					} else {
-						this.listeOuverte.addLast(noeudAAjouter);
-					}
-				}
-			}
-
-			if (carte.voisinExiste(centre, Direction.OUEST) && robot.getVitesse(carte.getVoisin(centre, Direction.OUEST).getNature()) > 0){
-				if (!this.listeFermee.contains(carte.getVoisin(centre, Direction.OUEST))){
-					noeudAAjouter = new PathNode(centre, carte.getVoisin(centre, Direction.OUEST), this.objectif);
-					if (isInOpenList(noeudAAjouter) >= 0) {
-						if (noeudAAjouter.getPertinence() < listeOuverte.get(isInOpenList(noeudAAjouter)).getPertinence() ) {
-							listeOuverte.set(isInOpenList(noeudAAjouter), noeudAAjouter);
-						}
-					} else {
-						this.listeOuverte.addLast(noeudAAjouter);
-					}
-				}
-			}
+			addInOpenList(centre, Direction.NORD);
+			addInOpenList(centre, Direction.SUD);
+			addInOpenList(centre, Direction.EST);
+			addInOpenList(centre, Direction.OUEST);
+// 			// On vérifie s'il y a un obstacle
+// /* Nord */	if (carte.voisinExiste(centre, Direction.NORD) && robot.getVitesse(carte.getVoisin(centre, Direction.NORD).getNature()) > 0){
+// 				// On vérifie que le noeud n'est pas déjà retenu
+// 				if (!this.listeFermee.contains(carte.getVoisin(centre, Direction.NORD))){
+// 					noeudAAjouter = new PathNode(centre, carte.getVoisin(centre, Direction.NORD), this.objectif);
+// 					// On vérifie s'il est dans la liste de ceux à étudier (liste ouverte)
+// 					if (isInOpenList(noeudAAjouter) >= 0) {
+// 						// On vérifie s'il vaut mieux le considérer avec ce nouveau parent (centre)
+// 						if (noeudAAjouter.getPertinence() < listeOuverte.get(isInOpenList(noeudAAjouter)).getPertinence() ) {
+// 							listeOuverte.set(isInOpenList(noeudAAjouter), noeudAAjouter);
+// 						}
+// 					} else {
+// 						this.listeOuverte.add/*Last*/(noeudAAjouter);
+// 					}
+// 				}
+// 			}
+//
+// 			if (carte.voisinExiste(centre, Direction.SUD) && robot.getVitesse(carte.getVoisin(centre, Direction.SUD).getNature()) > 0){
+// 				if (!this.listeFermee.contains(carte.getVoisin(centre, Direction.SUD))){
+// 					noeudAAjouter = new PathNode(centre, carte.getVoisin(centre, Direction.SUD), this.objectif);
+// 					if (isInOpenList(noeudAAjouter) >= 0) {
+// 						if (noeudAAjouter.getPertinence() < listeOuverte.get(isInOpenList(noeudAAjouter)).getPertinence() ) {
+// 							listeOuverte.set(isInOpenList(noeudAAjouter), noeudAAjouter);
+// 						}
+// 					} else {
+// 						this.listeOuverte.add/*Last*/(noeudAAjouter);
+// 					}
+// 				}
+// 			}
+//
+// 			if (carte.voisinExiste(centre, Direction.EST) && robot.getVitesse(carte.getVoisin(centre, Direction.EST).getNature()) > 0){
+// 				if (!this.listeFermee.contains(carte.getVoisin(centre, Direction.EST))){
+// 					noeudAAjouter = new PathNode(centre, carte.getVoisin(centre, Direction.EST), this.objectif);
+// 					if (isInOpenList(noeudAAjouter) >= 0) {
+// 						if (noeudAAjouter.getPertinence() < listeOuverte.get(isInOpenList(noeudAAjouter)).getPertinence() ) {
+// 							listeOuverte.set(isInOpenList(noeudAAjouter), noeudAAjouter);
+// 						}
+// 					} else {
+// 						this.listeOuverte.add/*Last*/(noeudAAjouter);
+// 					}
+// 				}
+// 			}
+//
+// 			if (carte.voisinExiste(centre, Direction.OUEST) && robot.getVitesse(carte.getVoisin(centre, Direction.OUEST).getNature()) > 0){
+// 				if (!this.listeFermee.contains(carte.getVoisin(centre, Direction.OUEST))){
+// 					noeudAAjouter = new PathNode(centre, carte.getVoisin(centre, Direction.OUEST), this.objectif);
+// 					if (isInOpenList(noeudAAjouter) >= 0) {
+// 						if (noeudAAjouter.getPertinence() < listeOuverte.get(isInOpenList(noeudAAjouter)).getPertinence() ) {
+// 							listeOuverte.set(isInOpenList(noeudAAjouter), noeudAAjouter);
+// 						}
+// 					} else {
+// 						this.listeOuverte.add/*Last*/(noeudAAjouter);
+// 					}
+// 				}
+// 			}
 
 
 		} else {
 			System.out.println("On a déjà atteint l'objectif : (" + objectif.getLigne() + ", " + objectif.getColonne() + ")");
 		}
 	}
+
+	private void addInOpenList(Case centre, Direction dir){
+		PathNode noeudAAjouter;
+
+		if (carte.voisinExiste(centre, dir) && robot.getVitesse(carte.getVoisin(centre, dir).getNature()) > 0){
+				if (!this.listeFermee.contains(carte.getVoisin(centre, dir))){
+					noeudAAjouter = new PathNode(centre, carte.getVoisin(centre, dir), this.objectif);
+					if (isInOpenList(noeudAAjouter) >= 0) {
+						if (noeudAAjouter.getPertinence() < listeOuverte.get(isInOpenList(noeudAAjouter)).getPertinence() ) {
+							listeOuverte.set(isInOpenList(noeudAAjouter), noeudAAjouter);
+						}
+					} else {
+						this.listeOuverte.add/*Last*/(noeudAAjouter);
+					}
+				}
+			}
+	}
+
 
 	private int isInOpenList(PathNode n){
 		int positionInList = -1;
@@ -181,7 +207,23 @@ public class PathFinding {
 		return noeudRetenu;
 	}
 
+	private void morphIntoSolution(){
+		PathNode last = listeFermee.peek();
+		Case buffer;
+		for (PathNode p : listeFermee) {
+			last = p;
+		}
 
+		this.tempsSolution = last.getG();
+
+		this.listeOuverte.clear();
+
+		buffer = last.getCase();
+		while (buffer != robot.getPosition()) {
+			this.solution.addFirst(buffer);
+			buffer = last.getParent();
+		}
+	}
 
 
 	// Une fois le Pathfinding fini, il faut générer les événements (getDate())

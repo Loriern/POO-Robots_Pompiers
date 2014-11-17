@@ -4,7 +4,7 @@ package donnees;
 public class PathNode implements Comparable<PathNode> {
 	private Case parent;
 	private Case node;
-	private Case objectif;
+// 	private Case objectif;
 
 	private double pertinence;  // pertinence = g + h
 
@@ -13,18 +13,18 @@ public class PathNode implements Comparable<PathNode> {
 
     public PathNode(Case ceNode, Case destination){	// Première case, sans parent
 		this.node = ceNode;
-		this.objectif = destination;
+// 		this.objectif = destination;
 		this.g = 0;
-		this.calcH(this.objectif);
+		this.calcH(destination);
 		this.calcPertinence();
     }
 
     public PathNode(Case ceNode, Case nodeParent, Case destination){
 		this.node = ceNode;
 		this.parent = nodeParent;
-		this.objectif = destination;
+// 		this.objectif = destination;
 		this.calcG();
-		this.calcH(this.objectif);
+		this.calcH(destination);
 		this.calcPertinence();
     }
 
@@ -38,6 +38,10 @@ public class PathNode implements Comparable<PathNode> {
 
     public Case getCase(){
 		return this.node;
+    }
+
+    public Case getParent(){
+		return this.parent;
     }
 
 
