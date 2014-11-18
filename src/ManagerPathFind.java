@@ -26,6 +26,7 @@ public class ManagerPathFind extends Manager {
 			getSimulateur().ajouteEvenement(new EvenementDeplacement(j, map, roues, previous.getOrientation(c)));
 			previous = c;
 			j++;
+// 			j += (int) p.getG();
 		}
 
 		solution.clear();

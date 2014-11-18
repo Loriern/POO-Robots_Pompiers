@@ -37,6 +37,10 @@ abstract public class Robot{
 // de la vitesse sur chacune des cases multipliée
 // par la taille des cases.
 	abstract public double getVitesse(NatureTerrain natureDuTerrain);
+
+	public double getVitesseDeplacement(Case source, Case destination, int tailleCases){
+		return 0.5*(getVitesse(source.getNature()) + getVitesse(destination.getNature()))*tailleCases;
+	}
 /*
 	protected abstract void deplacer(Case arrivee){
 	    while ((position.ligne != arrivee.ligner) && (position.colonne != arrivee.colonne)){
@@ -50,7 +54,6 @@ abstract public class Robot{
 //     abstract public void deplacer(Case c);
 
 //	abstract public RobotType getType();
-
 
 	public void deverserEau(int vol){
 		if (vol <= this.getCapaciteMax()) {

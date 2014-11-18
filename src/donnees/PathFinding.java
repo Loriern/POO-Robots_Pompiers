@@ -60,7 +60,7 @@ public class PathFinding {
 
 		if (carte.voisinExiste(centre.getCase(), dir) && robot.getVitesse(carte.getVoisin(centre.getCase(), dir).getNature()) > 0){
 			if (!this.listeFermee.contains(carte.getVoisin(centre.getCase(), dir))){
-				noeudAAjouter = new PathNode(centre, carte.getVoisin(centre.getCase(), dir), this.objectif);
+				noeudAAjouter = new PathNode(/*robot, */centre, carte.getVoisin(centre.getCase(), dir), this.objectif/*, carte.getTailleCases()*/);
 				int nodePosition = isInOpenList(noeudAAjouter);
 				if (nodePosition >= 0) {
 					if (noeudAAjouter.getPertinence() < listeOuverte.get(nodePosition).getPertinence()) {

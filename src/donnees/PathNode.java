@@ -7,7 +7,7 @@ public class PathNode implements Comparable<PathNode> {
 
 	private double pertinence;  // pertinence = g + h
 
-	private double g;  // g : distance depuis la source
+	private double g;  // g : distance depuis la source - "temps" en commentaires...
     private double h;  // distance entre ce noeud et l'objectif
 
     public PathNode(Case ceNode, Case destination){	// Première case, sans parent
@@ -17,10 +17,10 @@ public class PathNode implements Comparable<PathNode> {
 		this.calcPertinence();
     }
 
-    public PathNode(PathNode nodeParent, Case ceNode, Case destination){
+    public PathNode(/*Robot robot, */PathNode nodeParent, Case ceNode, Case destination/*, int tailleCases*/){
 		this.node = ceNode;
 		this.parent = nodeParent;
-		this.calcG();
+		this.calcG(/*robot, tailleCases*/);
 		this.calcH(destination);
 		this.calcPertinence();
     }
@@ -63,8 +63,12 @@ public class PathNode implements Comparable<PathNode> {
 
 
 
-    private void calcG(){
+    private void calcG(/*Robot robot, int tailleCases*/){
 		this.g = this.parent.getG() + 1;
+
+// 		this.g = this.parent.getG() +
+// 			1/(robot.getVitesseDeplacement(this.parent.getCase(),
+// 										this.node, tailleCases));
     }
 
     private void calcH(Case objectif){
